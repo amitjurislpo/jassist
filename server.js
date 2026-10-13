@@ -24,8 +24,10 @@ http.createServer((req, res) => {
   let urlPath;
   try { urlPath = decodeURIComponent(req.url.split('?')[0]); } catch { urlPath = '/'; }
   if (urlPath.endsWith('/')) urlPath += 'index.html';
-  const file = path.normalize(path.join(ROOT, urlPath));
+  let file = path.normalize(path.join(ROOT, urlPath));
   if (!file.startsWith(ROOT)) { res.writeHead(403); return res.end('Forbidden'); }
+  // Clean URLs: /services -> services.html
+  if (!path.extname(file)) file += '.html';
   fs.readFile(file, (err, data) => {
     if (err) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }); return res.end('404 Not Found'); }
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream' });
