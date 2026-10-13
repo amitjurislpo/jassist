@@ -16,7 +16,7 @@ burgers.forEach(b=>b.addEventListener('click',()=>toggleMenu(!document.body.clas
 $$('.mnav a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
 
 /* ---- Logos ---- */
-$('#lgTrack').innerHTML=Array(16).fill('<div class="lg">Client logo</div>').join('');
+if($('#lgTrack'))$('#lgTrack').innerHTML=Array(16).fill('<div class="lg">Client logo</div>').join('');
 
 /* ---- Services bento ---- */
 const IC={
@@ -46,17 +46,21 @@ const S=[
  ['Graphic Design','Social media creatives, presentations, advertisements, brochures, marketing materials and business graphics.','shape'],
  ['Bookkeeping & Accounting Support','Bookkeeping, accounts payable, accounts receivable, invoice management, expense tracking, accounting data entry and QuickBooks support.','ledger',vizLdg]
 ];
-$('#bento').innerHTML=S.map((s,i)=>{
+const bentoEl=$('#bento');
+if(bentoEl){const slug=n=>'/services/'+n.toLowerCase().replace(/&/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+bentoEl.innerHTML=S.map((s,i)=>{
   const t=`<div class="txt"><span class="ico">${IC[s[2]]}</span><h3>${s[0].replace('&','&amp;')}</h3><p>${s[1]}</p><span class="more">Learn More ${arrow}</span></div>`;
-  return s[3]?`<a href="#contact" class="svc w2 rv">${t}${s[3]()}</a>`:`<a href="#contact" class="svc rv ${i%2?'d1':''}">${t}</a>`;
-}).join('');
+  return s[3]?`<a href="${slug(s[0])}" class="svc w2 rv">${t}${s[3]()}</a>`:`<a href="${slug(s[0])}" class="svc rv ${i%2?'d1':''}">${t}</a>`;
+}).join('');}
 $$('.svc').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
 
 /* ---- Why tabs ---- */
 const W=[['Dedicated Professionals','Get professionals assigned to your business based on your requirements.'],['Managed Support','J Assist handles coordination, performance monitoring and operational support.'],['Built Around Your Business','Your support team is structured around your actual workflow and requirements.'],['Flexible Scaling','Start with one professional and expand into a complete remote support team.'],['Cost-Efficient','Access skilled professionals without the overhead of traditional full-time hiring.']];
 const tabs=$('#tabs');
+let cur=-1;
+if(tabs){
 tabs.innerHTML=W.map((w,i)=>`<button class="tab" role="tab" aria-selected="false" data-i="${i}"><h3><span class="no">0${i+1}</span>${w[0]}</h3><p>${w[1]}</p><span class="prog"><i></i></span></button>`).join('');
-const scenes=$$('.scene'),tbs=$$('.tab');let cur=-1;
+const scenes=$$('.scene'),tbs=$$('.tab');
 const roles=[['EA','g'],['SS',''],['BK','s'],['MK',''],['RE','s'],['TE','']];
 function scaleAnim(){const box=$('#scaleAv');box.innerHTML=roles.map(r=>`<span class="av ${r[1]}">${r[0]}</span>`).join('');const avs=$$('.av',box);avs.forEach(a=>a.style.transform='scale(0)');
   avs.forEach((a,i)=>setTimeout(()=>{if(cur!==3)return;a.style.transform='scale(1)';$('#scaleN').textContent=(i+1)+(i?' professionals':' professional');},300+i*650));}
@@ -72,6 +76,7 @@ const whyEl=$('#why');
 whyEl.addEventListener('pointerenter',()=>whyEl.classList.add('paused'));
 whyEl.addEventListener('pointerleave',()=>whyEl.classList.remove('paused'));
 show(0);
+}
 
 /* ---- Industries ---- */
 const ICI={
@@ -90,8 +95,11 @@ const IND=[
  ['Professional Services','ps','Executive assistance, proposal support, reporting and client communication for consultancies and agencies.',['Proposals','Reporting','Admin']],
  ['Startups & Small Businesses','st','A flexible bench of specialists, from your first assistant to a full support team, without building HR from scratch.',['Flexible','Multi-role','Scalable']]
 ];
+let carP=()=>{};
 const car=$('#car');
-car.innerHTML=IND.map((d,i)=>`<article class="ic-card"><div class="top"><span class="ico">${ICI[d[1]]}</span><span class="n">0${i+1} / 06</span></div><h3>${d[0].replace('&','&amp;')}</h3><p>${d[2]}</p><div class="tg">${d[3].map(t=>`<span>${t}</span>`).join('')}</div></article>`).join('');
+if(car){
+const islug=n=>'/industries/'+n.toLowerCase().replace(/&/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+car.innerHTML=IND.map((d,i)=>`<a href="${islug(d[0])}" class="ic-card"><div class="top"><span class="ico">${ICI[d[1]]}</span><span class="n">0${i+1} / 06</span></div><h3>${d[0].replace('&','&amp;')}</h3><p>${d[2]}</p><div class="tg">${d[3].map(t=>`<span>${t}</span>`).join('')}</div></a>`).join('');
 const cardW=()=>$('.ic-card').offsetWidth+18;
 $('#next').onclick=()=>car.scrollBy({left:cardW()});
 $('#prev').onclick=()=>car.scrollBy({left:-cardW()});
@@ -100,14 +108,18 @@ car.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=tr
 addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;moved=Math.abs(dx);if(moved>4)car.classList.add('drag');car.scrollLeft=sl-dx;});
 addEventListener('pointerup',()=>{if(!down)return;down=false;car.classList.remove('drag');const w=cardW();car.scrollTo({left:Math.round(car.scrollLeft/w)*w});});
 const cp=$('#carProg');
-function carP(){const max=car.scrollWidth-car.clientWidth;const vis=car.clientWidth/car.scrollWidth;cp.style.width=(vis*100)+'%';cp.style.transform=`translateX(${max?car.scrollLeft/max*(1/vis-1)*100:0}%)`;}
+carP=function(){const max=car.scrollWidth-car.clientWidth;const vis=car.clientWidth/car.scrollWidth;cp.style.width=(vis*100)+'%';cp.style.transform=`translateX(${max?car.scrollLeft/max*(1/vis-1)*100:0}%)`;}
 car.addEventListener('scroll',carP,{passive:true});
+}
 
 /* ---- Compare ---- */
 const CMP={t:['Recruitment','Interviews','Training','Administrative overhead','Replacement challenges','Higher operating costs'],j:['Professional matching','Dedicated support','Flexible staffing','Managed operations','Scalable teams','Business-focused support']};
 const NOTE={t:'<span>The traditional route: <b>time, cost and risk</b> stay with you.</span><span>Switch to compare →</span>',j:'<span>With J Assist: <b>we handle the work behind the hire.</b></span><a href="#contact" class="btn btn-gold">Build My Team '+arrow+'</a>'};
-const box=$('#cmpBox'),grid=$('#cmpGrid'),knob=$('#knob'),sbtn=$$('#switch button');
-function placeKnob(){const on=$('#switch button.on');if(on){knob.style.width=on.offsetWidth+'px';knob.style.transform=`translateX(${on.offsetLeft-6}px)`;}}
+let placeKnob=()=>{};
+const box=$('#cmpBox');
+if(box){
+const grid=$('#cmpGrid'),knob=$('#knob'),sbtn=$$('#switch button');
+placeKnob=function(){const on=$('#switch button.on');if(on){knob.style.width=on.offsetWidth+'px';knob.style.transform=`translateX(${on.offsetLeft-6}px)`;}}
 function setMode(m,anim){
   box.classList.toggle('j',m==='j');
   grid.innerHTML=CMP[m].map((t,i)=>`<div class="ci${anim?' flip':''}" style="animation-delay:${i*.06}s"><span class="mk">${m==='j'?check:cross}</span>${t}</div>`).join('');
@@ -117,24 +129,7 @@ function setMode(m,anim){
 }
 sbtn.forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.m,true)));
 setMode('j',false);
-
-/* ---- Contact multi-step ---- */
-const chipSets={indChips:['Law Firm','Real Estate','Accounting & CPA','E-commerce','Professional Services','Startup / Small Business','Other'],svcChips:S.map(s=>s[0]),numChips:['1','2–3','4–10','10+','Not sure yet']};
-Object.entries(chipSets).forEach(([id,arr])=>{const el=$('#'+id);el.innerHTML=arr.map(t=>`<button type="button" class="chip" aria-pressed="false">${t.replace('&','&amp;')}</button>`).join('');
-  el.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;if(el.hasAttribute('data-single'))$$('.chip',el).forEach(x=>x!==c&&x.setAttribute('aria-pressed','false'));c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')!=='true');el.closest('.f').classList.remove('bad');});});
-let step=0;const panes=$$('.pane'),stepEls=$$('#steps>div'),nextB=$('#nextBtn'),backB=$('#back');
-function valid(p){
-  let ok=true,first=null;
-  if(p===0){$$('[required]',panes[0]).forEach(f=>{const bad=!f.value.trim()||(f.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value));f.closest('.f').classList.toggle('bad',bad);if(bad){ok=false;first=first||f;}});}
-  if(p===1){[['#indChips','#indF'],['#svcChips','#svcF']].forEach(([c,f])=>{const bad=!$$('.chip[aria-pressed="true"]',$(c)).length;$(f).classList.toggle('bad',bad);if(bad){ok=false;first=first||$('.chip',$(c));}});}
-  if(first)first.focus();return ok;
 }
-function go(n){step=n;panes.forEach((p,i)=>p.classList.toggle('on',i===n));stepEls.forEach((s,i)=>s.classList.toggle('on',i<=n));backB.style.visibility=n?'visible':'hidden';
-  nextB.innerHTML=n===2?'Request a Consultation '+arrow:'Continue '+arrow;$('#stepNote').textContent=`Step ${n+1} of 3`;}
-nextB.addEventListener('click',()=>{if(!valid(step))return;if(step<2)go(step+1);else $('#lead').classList.add('sent');});
-backB.addEventListener('click',()=>go(step-1));
-$('#lead').addEventListener('submit',e=>{e.preventDefault();nextB.click();});
-$$('#lead input').forEach(f=>f.addEventListener('input',()=>f.closest('.f').classList.remove('bad')));
 
 /* ---- Reveal & counters ---- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);
@@ -145,6 +140,7 @@ $$('.rv,#stats').forEach(el=>io.observe(el));
 /* ---- Scroll: timeline ---- */
 const rail=$('#rail'),tl=$('#tl'),sts=$$('.st');
 function onScroll(){
+  if(!tl)return;
   const r=tl.getBoundingClientRect(),mid=innerHeight*.55;
   rail.style.transform=`scaleY(${Math.min(1,Math.max(0,(mid-r.top)/r.height))})`;
   sts.forEach(s=>s.classList.toggle('on',s.getBoundingClientRect().top<mid));
@@ -155,6 +151,7 @@ onScroll();carP();
 document.fonts&&document.fonts.ready.then(()=>{placeKnob();carP();});
 
 /* ---- Hero: role chips, checklist, time zones ---- */
+if($('#hcTrack')){
 const CH=[['cal','Executive Assistant'],['chat','Social Media'],['web','Website Development'],['home','Real Estate Support'],['trend','Sales & Lead Gen'],['search','SEO'],['pen','Content Creation'],['shape','Graphic Design'],['ledger','Bookkeeping']];
 const chips=CH.map(c=>`<span class="rchip"><span class="ic">${IC[c[0]]}</span>${c[1].replace('&','&amp;')}</span>`).join('');
 $('#hcTrack').innerHTML=chips+chips;
@@ -166,4 +163,5 @@ function tzs(){$$('#hcTz .tzr').forEach(r=>{const o={};new Intl.DateTimeFormat('
   const open=!['Sat','Sun'].includes(o.weekday)&&h24>=9&&h24<17;
   $('.t',r).textContent=`${o.hour}:${o.minute} ${o.dayPeriod}`;const s=$('.s',r);s.textContent=open?'Business hours':'After hours';s.classList.toggle('open',open);});}
 tzs();setInterval(tzs,30000);
+}
 })();
