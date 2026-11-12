@@ -5,7 +5,7 @@
 const base = ({ EMAIL, PHONE }) => ({
   // ---------- top-level pages ----------
   index: [
-    ['What services does JurisAssistMe offer?', 'Nine specialties: virtual executive assistant, social media management, website development, real estate support, sales and lead generation, content creation, SEO management, graphic design, and bookkeeping and accounting support.'],
+    ['What services does JurisAssistMe offer?', 'Eight specialties: virtual executive assistant, administrative support, social media management, website development, content creation, SEO management, graphic design, and bookkeeping and accounting support.'],
     ['How do I hire a virtual assistant through JurisAssistMe?', 'Tell us what you need, including tasks, responsibilities and preferred working hours. We match a professional to your requirements, you review the profile and interview them, and then they start.'],
     ['Do I interview the virtual assistant before they start?', 'Yes. You review the profile and interview the selected professional before moving forward.'],
     ['Can I start with one virtual assistant and add more later?', 'Yes. Start with one professional and expand into a complete remote support team as your needs grow.'],
@@ -13,7 +13,7 @@ const base = ({ EMAIL, PHONE }) => ({
     ['How much does a virtual assistant cost?', 'Pricing is confirmed per engagement based on the roles, scope and hours you need. Contact us and we will recommend a team structure and quote.']
   ],
   services: [
-    ['What virtual assistant services does JurisAssistMe provide?', 'Virtual executive assistant, social media management, website development, real estate support, sales and lead generation, content creation, SEO management, graphic design, and bookkeeping and accounting support.'],
+    ['What virtual assistant services does JurisAssistMe provide?', 'Virtual executive assistant, administrative support, social media management, website development, content creation, SEO management, graphic design, and bookkeeping and accounting support.'],
     ['How do I choose the right service for my business?', 'Start with the work that takes the most of your time or is most repetitive. Tell us what you want to hand off and we will recommend the role or combination of roles that fits.'],
     ['Which tools does my professional work in?', 'Your professional works in your systems, on your schedule and following your processes. We confirm tools, time zone and working hours during setup.'],
     ['Are the services for U.S. businesses only?', 'Our services are designed for U.S. businesses, with support across Eastern, Central, Mountain and Pacific time and flexible working hours.'],
@@ -39,13 +39,13 @@ const base = ({ EMAIL, PHONE }) => ({
     ['Which industries does JurisAssistMe support?', 'Law firms, real estate, accounting and CPA firms, e-commerce, professional services, and startups and small businesses.'],
     ['Do virtual assistants understand my industry\'s terminology?', 'We match professionals to your requirements, including your industry and tools. You review the profile and interview them before they start.'],
     ['Does JurisAssistMe give legal, tax or financial advice?', 'No. We provide administrative and business support only. JurisAssistMe is not a law, CPA or financial advisory firm.'],
-    ['Can I use different roles across one business?', 'Yes. Many businesses combine roles, such as an executive assistant with bookkeeping or lead generation support.'],
+    ['Can I use different roles across one business?', 'Yes. Many businesses combine roles, such as an executive assistant with bookkeeping or administrative support.'],
     ['What if my industry is not listed?', 'Contact us. We will tell you whether we are a fit and which roles could help.']
   ],
   about: [
     ['Who is JurisAssistMe for?', 'U.S. businesses that want skilled virtual professionals without the complexity of traditional hiring, from solo founders to growing teams.'],
     ['What makes JurisAssistMe different?', 'We are a managed service rather than a marketplace. We match, manage and support professionals so they work as part of your team.'],
-    ['What areas can your professionals support?', 'Business support, sales, marketing, finance, real estate and technology.'],
+    ['What areas can your professionals support?', 'Administration, business support, marketing, finance and technology.'],
     ['How does the account manager fit in?', 'One account manager coordinates your team, so you have a single point of contact.'],
     ['Where is JurisAssistMe\'s team based?', 'Our professionals work remotely and support U.S. businesses across Eastern, Central, Mountain and Pacific time.'],
     ['How do I get in touch?', `Email ${EMAIL} or call ${PHONE}. You can also use the contact page.`]
@@ -65,7 +65,7 @@ const base = ({ EMAIL, PHONE }) => ({
     ['Is the blog content professional advice?', 'No. Articles are general information, not legal, tax, accounting or financial advice.'],
     ['How do I know which article to start with?', 'If you are new to virtual assistants, start with our step-by-step guide to hiring one.'],
     ['Can I suggest a topic for the blog?', 'Yes. Contact us with the topic you would like us to cover.'],
-    ['Where can I learn about your services?', 'See our services page for all nine specialties, or contact us to talk through what you need.']
+    ['Where can I learn about your services?', 'See our services page for all eight specialties, or contact us to talk through what you need.']
   ],
   resources: [
     ['What is on the Resources page?', 'Guides and insights on hiring and working with virtual assistants, plus case studies that will be published once approved.'],
@@ -82,6 +82,11 @@ const base = ({ EMAIL, PHONE }) => ({
     ['Will my assistant work in my calendar and inbox?', 'Yes. Your assistant works in your tools and systems. Access and permissions are confirmed during setup.'],
     ['Can I limit what my virtual executive assistant can do?', 'Yes. You define the tasks and approvals, and sensitive decisions can stay with you.']
   ],
+  'services/administrative-support': [
+    ['What tasks can administrative support take off my plate?', 'Data entry, document preparation, file organization, inbox and order handling, record keeping, customer follow-up and general back-office support.'],
+    ['Can I start with just a few hours of administrative help?', 'Yes. Start with the hours your tasks need and adjust as you see how it works.'],
+    ['Will the assistant follow my existing processes?', 'Yes. Your professional works in your systems and follows your processes and templates.']
+  ],
   'services/social-media-management': [
     ['What does a social media manager do?', 'Content planning, scheduling, publishing, community management, analytics and general social media support.'],
     ['Which platforms can you manage?', 'We confirm the platforms you use during setup and plan the work around them.'],
@@ -91,17 +96,6 @@ const base = ({ EMAIL, PHONE }) => ({
     ['What website work can you help with?', 'Business websites, landing pages, WordPress development, maintenance, updates and technical support.'],
     ['Can you update or maintain my existing website?', 'Yes. Maintenance, updates and technical support are part of the service.'],
     ['Do you work with WordPress?', 'Yes. WordPress development is included.']
-  ],
-  'services/real-estate-support': [
-    ['What does a real estate virtual assistant do?', 'Property research, lead management, CRM updates, listing support, appointment scheduling and administrative assistance.'],
-    ['Can the assistant update my CRM?', 'Yes. CRM updates are part of the service, and we confirm your CRM during setup.'],
-    ['Is this suitable for both agents and brokerages?', 'Yes. We support individual agents and brokerages.'],
-    ['Can the assistant help with listing support?', 'Yes. Listing support is part of the service, alongside property research and appointment scheduling.']
-  ],
-  'services/sales-lead-generation': [
-    ['What is included in sales and lead generation support?', 'Lead research, prospecting, cold calling, email outreach, appointment setting, CRM management and follow-ups.'],
-    ['Will the assistant book appointments for my team?', 'Yes. Appointment setting is part of the service.'],
-    ['Can you manage follow-ups in my CRM?', 'Yes. CRM management and follow-ups are included, working in your CRM.']
   ],
   'services/content-creation': [
     ['What types of content can you create?', 'Blogs, website content, social media content, email content, marketing copy and business communications.'],
@@ -173,7 +167,7 @@ const MORE = {
   ],
   resources: [
     ['Can I share these resources with my team?', 'Yes. Articles include share buttons for social media, WhatsApp and email.'],
-    ['Where can I find the services JurisAssistMe offers?', 'On the services page, which covers all nine specialties.']
+    ['Where can I find the services JurisAssistMe offers?', 'On the services page, which covers all eight specialties.']
   ],
   industries: [
     ['How do I find the right virtual assistant for my industry?', 'Tell us your industry, tasks and tools. We match a professional to your requirements and you interview them first.']
@@ -184,11 +178,10 @@ const MORE = {
   'industries/e-commerce': [['Can the assistant help with customer email?', 'Yes. Customer email is part of the e-commerce support.']],
   'industries/professional-services': [['Can the assistant produce client reports?', 'Yes. Reporting support is included.']],
   'industries/startups-small-businesses': [['Do I need a long-term contract to start?', 'Terms are confirmed per engagement. Contact us and we will explain the options.']],
-  'services/virtual-executive-assistant': [['Can I add more support roles later?', 'Yes. Many businesses add roles such as bookkeeping or lead generation support alongside an executive assistant.']],
+  'services/virtual-executive-assistant': [['Can I add more support roles later?', 'Yes. Many businesses add roles such as bookkeeping or administrative support alongside an executive assistant.']],
+  'services/administrative-support': [['How is administrative support priced?', 'Pricing is confirmed per engagement based on the scope, role and hours you need.']],
   'services/social-media-management': [['Can I approve posts before they are published?', 'Yes. You set the approval process and keep control of what goes live.']],
   'services/website-development': [['Can you build landing pages for campaigns?', 'Yes. Landing pages are part of the service.']],
-  'services/real-estate-support': [['How is the service priced?', 'Pricing is confirmed per engagement based on the scope, role and hours you need.']],
-  'services/sales-lead-generation': [['Can the assistant do cold calling and email outreach?', 'Yes. Both are part of the service.']],
   'services/content-creation': [['How is the service priced?', 'Pricing is confirmed per engagement based on the scope, role and hours you need.']],
   'services/seo-management': [['Does SEO include competitor research?', 'Yes. Competitor research is part of the service.']],
   'services/graphic-design': [['Can the designer create social media graphics?', 'Yes. Social media creatives are included.']],

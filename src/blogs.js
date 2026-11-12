@@ -17,7 +17,7 @@ const BLOGS = [
 <p class="answer"><strong>Quick answer:</strong> To hire a virtual assistant, list the tasks you want to hand off, decide whether to recruit directly, use a marketplace or work with a managed provider, interview and test the candidate on real work, then onboard them with documented processes, shared tools and a clear review rhythm.</p>
 
 <h2>What is a virtual assistant?</h2>
-<p>A <strong>virtual assistant</strong> (VA) is a remote professional who supports a business with administrative, operational or specialist tasks without working from your office. Typical work includes email and calendar management, research, customer follow-up, bookkeeping support, social media and lead research. A VA works in your tools, on agreed hours, and reports to you or to a manager you nominate.</p>
+<p>A <strong>virtual assistant</strong> (VA) is a remote professional who supports a business with administrative, operational or specialist tasks without working from your office. Typical work includes email and calendar management, research, customer follow-up, bookkeeping support, data entry and social media. A VA works in your tools, on agreed hours, and reports to you or to a manager you nominate.</p>
 <p>Virtual assistants range from general administrative support to specialists in areas such as sales, content or accounting support. The right profile depends on the work, not the job title.</p>
 
 <h2>What tasks can you delegate to a virtual assistant?</h2>
@@ -26,7 +26,7 @@ const BLOGS = [
 <li><strong>Executive support:</strong> inbox triage, scheduling, travel coordination and reporting. See our <a href='/services/virtual-executive-assistant'>virtual executive assistant service</a>.</li>
 <li><strong>Finance admin:</strong> invoice management, expense tracking and data entry. See <a href='/services/bookkeeping-accounting-support'>bookkeeping and accounting support</a>.</li>
 <li><strong>Marketing:</strong> content scheduling and community replies through <a href='/services/social-media-management'>social media management</a>.</li>
-<li><strong>Sales:</strong> prospect research, outreach and follow-ups through <a href='/services/sales-lead-generation'>sales and lead generation support</a>.</li>
+<li><strong>Back office:</strong> data entry, document preparation, file organization and record keeping through <a href='/services/administrative-support'>administrative support</a>.</li>
 </ul>
 <p>Keep decisions, approvals, pricing and sensitive client conversations with you until trust is established.</p>
 
