@@ -211,7 +211,7 @@ function render(page, body) {
   const noindex = page.noindex ? '\n<meta name="robots" content="noindex">' : '';
   const ld = [page.slug === 'index' ? orgLd : '', faq.ld, page.ld, breadcrumbLd(page)].filter(Boolean).join('\n');
   return `<!doctype html>
-<html lang="en">
+<html lang="en" data-theme="slate-dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -223,11 +223,12 @@ function render(page, body) {
 <meta property="og:site_name" content="JurisAssistMe">
 <meta name="application-name" content="JurisAssistMe">
 ${page.keywords ? `<meta name="keywords" content="${esc(page.keywords.join(', '))}">\n` : ''}${page.image ? `<meta property="og:image" content="${absolute(page.image)}">\n<meta property="article:published_time" content="${page.published}">\n<meta name="twitter:image" content="${absolute(page.image)}">\n` : ''}<meta name="twitter:card" content="${page.image ? 'summary_large_image' : 'summary'}">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#151A20">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="${FAVICON}">
-<link rel="preload" href="/fonts/bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/jost.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/theme-slate-dark.css">
 ${ld}
 </head>
 <body${page.bodyClass ? ` class="${page.bodyClass}"` : ''}>
