@@ -1,0 +1,142 @@
+/* JurisAssistMe — "Slate & Brass Dark" theme. Load AFTER styles.css; requires <html data-theme="slate-dark">. */
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/inter-var.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:italic;font-weight:100 900;font-display:swap;src:url(/fonts/inter-var-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+html[data-theme="slate-dark"] .skip{background:#212932}
+html[data-theme="slate-dark"] .kicker b{background:#212932}
+html[data-theme="slate-dark"] .btn-gold{color:#111}
+html[data-theme="slate-dark"] .btn-dark{background:#212932;box-shadow:0 12px 30px -14px rgba(0,0,0,.6)}
+html[data-theme="slate-dark"] .btn-dark:hover{background:#29323C}
+html[data-theme="slate-dark"] .logo .mk{color:#111}
+html[data-theme="slate-dark"] .mnav{box-shadow:0 30px 60px -30px rgba(0,0,0,.4)}
+html[data-theme="slate-dark"] .rchip .ic{background:#212932}
+html[data-theme="slate-dark"] .hcc{box-shadow:0 30px 60px -42px rgba(0,0,0,.45)}
+html[data-theme="slate-dark"] .av{background:#212932}
+html[data-theme="slate-dark"] .av.g{color:#111}
+html[data-theme="slate-dark"] .stat:hover{box-shadow:0 30px 50px -36px rgba(0,0,0,.35),0 0 0 1px var(--line)}
+html[data-theme="slate-dark"] .svc:hover{box-shadow:0 40px 60px -44px rgba(0,0,0,.45)}
+html[data-theme="slate-dark"] .svc .ico{background:#212932}
+html[data-theme="slate-dark"] .cal .ev.k{background:#212932}
+html[data-theme="slate-dark"] .fn i{background:#212932}
+html[data-theme="slate-dark"] .fn div:nth-child(2) i{background:#29323C}
+html[data-theme="slate-dark"] .tab.on{box-shadow:0 20px 40px -30px rgba(0,0,0,.35)}
+html[data-theme="slate-dark"] .stage{background:#212932}
+html[data-theme="slate-dark"] .prof .big{color:#111}
+html[data-theme="slate-dark"] .chk .c{color:#111}
+html[data-theme="slate-dark"] .flow .nd.g{color:#111}
+html[data-theme="slate-dark"] .st.on .dot{background:#212932;border-color:rgba(196,160,106,.35)}
+html[data-theme="slate-dark"] .st.on .card{box-shadow:0 30px 60px -40px rgba(0,0,0,.4),0 0 0 1px var(--line)}
+html[data-theme="slate-dark"] .arrows button:hover{background:#212932;border-color:rgba(196,160,106,.35)}
+html[data-theme="slate-dark"] .ic-card:hover{box-shadow:0 40px 60px -40px rgba(0,0,0,.45)}
+html[data-theme="slate-dark"] .ic-card:hover .ico{background:#212932}
+html[data-theme="slate-dark"] .car-prog i{background:#212932}
+html[data-theme="slate-dark"] .switch .knob{background:#212932;box-shadow:0 10px 20px -10px rgba(0,0,0,.6)}
+html[data-theme="slate-dark"] .cmp-box.j{background:#212932}
+html[data-theme="slate-dark"] .cmp-box.j .ci .mk{color:#111}
+html[data-theme="slate-dark"] .cta-in{background:#212932}
+html[data-theme="slate-dark"] .pill b{color:#111}
+html[data-theme="slate-dark"] .tn{box-shadow:0 20px 40px -26px rgba(0,0,0,.45)}
+html[data-theme="slate-dark"] .tn.core{background:#212932}
+html[data-theme="slate-dark"] .cc:hover{box-shadow:0 30px 50px -36px rgba(0,0,0,.35),0 0 0 1px var(--line)}
+html[data-theme="slate-dark"] .cc .ci2{background:#212932}
+html[data-theme="slate-dark"] a.res-card:hover,html[data-theme="slate-dark"] .post-card:hover,html[data-theme="slate-dark"] .rel-card:hover{box-shadow:0 30px 50px -36px rgba(0,0,0,.35),0 0 0 1px var(--line)}
+html[data-theme="slate-dark"] .pc-img{background:#212932}
+html[data-theme="slate-dark"] .prose p{color:rgba(237,240,243,.8)}
+html[data-theme="slate-dark"] .prose ul{color:rgba(237,240,243,.8)}
+html[data-theme="slate-dark"] .inc .c{color:#111}
+html[data-theme="slate-dark"] .soc a:hover{background:#212932}
+html[data-theme="slate-dark"] .fx-item.on .fx-n{color:#111}
+html[data-theme="slate-dark"] .fx-ans p{color:rgba(237,240,243,.8)}
+html[data-theme="slate-dark"] .fx-panel{box-shadow:0 0 0 6px rgba(var(--acc-rgb),.1),0 44px 80px -40px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 60px rgba(var(--acc-rgb),.06)}
+html[data-theme="slate-dark"] .fx-nav button:hover{color:#111}
+html[data-theme="slate-dark"] .bp-fig img{box-shadow:0 40px 70px -48px rgba(0,0,0,.5)}
+html[data-theme="slate-dark"] .bp-art ol{color:rgba(237,240,243,.8)}
+html[data-theme="slate-dark"] .tbl th,html[data-theme="slate-dark"] .tbl td{color:rgba(237,240,243,.8)}
+html[data-theme="slate-dark"] .tbl th{background:#212932}
+html[data-theme="slate-dark"] .tm-card:hover,html[data-theme="slate-dark"] .tm-card:focus-visible{box-shadow:0 30px 50px -34px rgba(0,0,0,.5),0 0 0 1px var(--gold)}
+html[data-theme="slate-dark"] .tm-x{background:#1B2229}
+html[data-theme="slate-dark"] .tm-dtx p{color:rgba(237,240,243,.8)}
+html[data-theme="slate-dark"] .hdr.scrolled{background:#1B2229}
+html[data-theme="slate-dark"] .nav.seg a[aria-current="page"]{background:#1B2229}
+html[data-theme="slate-dark"] .dd-in{background:#1B2229}
+html[data-theme="slate-dark"] .dd-in a:hover .bdg{background:#212932}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all{background:#212932}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:hover{background:#212932}
+html[data-theme="slate-dark"] .hcta{background:#212932}
+
+/* ===== JurisAssistMe — Dark theme (Particle Ocean palette) ===== */
+html[data-theme="slate-dark"]{
+  --ink:#EDF0F3;--ink-rgb:237,240,243;
+  --paper:#151A20;--paper-rgb:21,26,32;
+  --surface:#1A2027;
+  --muted:#9BA5B0;
+  --gold-text:#D2B47F;
+  --elev:#1B2229;--elev-2:#212932;
+  color-scheme:dark;
+}
+html[data-theme="slate-dark"] body{background:#151A20}
+html[data-theme="slate-dark"] ::selection{background:rgba(196,160,106,.35);color:#fff}
+/* gold gradient text: use the light gold version everywhere on dark */
+html[data-theme="slate-dark"] .gg-d{background-image:linear-gradient(100deg,var(--gold-hi) 0%,var(--gold) 45%,var(--gold-lo) 100%)}
+/* primary dark buttons become gold */
+html[data-theme="slate-dark"] .btn-dark,html[data-theme="slate-dark"] .hcta{background:linear-gradient(180deg,var(--gold-hi),var(--gold));color:#111;box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 30px -12px rgba(196,160,106,.55)}
+html[data-theme="slate-dark"] .btn-dark:hover{background:linear-gradient(180deg,#F6EBCC,var(--gold-hi))}
+html[data-theme="slate-dark"] .btn-line{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.18);color:var(--ink)}
+html[data-theme="slate-dark"] .btn-line:hover{border-color:var(--gold);color:var(--gold)}
+/* small "badge" fills → gold chips */
+html[data-theme="slate-dark"] .kicker b,html[data-theme="slate-dark"] .pill b{background:var(--gold);color:#111}
+html[data-theme="slate-dark"] .kicker{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12);color:var(--gold-hi)}
+/* icon tiles: dark with gold glyph + hairline */
+html[data-theme="slate-dark"] .svc .ico,html[data-theme="slate-dark"] .cc .ci2,html[data-theme="slate-dark"] .rchip .ic,html[data-theme="slate-dark"] .av{background:#212932;color:var(--gold);box-shadow:inset 0 0 0 1px rgba(196,160,106,.22)}
+html[data-theme="slate-dark"] .ic-card:hover .ico,html[data-theme="slate-dark"] .arrows button:hover,html[data-theme="slate-dark"] .soc a:hover,html[data-theme="slate-dark"] .dd-in a:hover .bdg,html[data-theme="slate-dark"] .st.on .dot{background:var(--gold);color:#111;border-color:var(--gold)}
+/* progress / bars / knobs → gold */
+html[data-theme="slate-dark"] .fn i,html[data-theme="slate-dark"] .car-prog i,html[data-theme="slate-dark"] .cal .ev.k{background:linear-gradient(90deg,var(--gold-lo),var(--gold))}
+html[data-theme="slate-dark"] .fn div:nth-child(2) i{background:rgba(196,160,106,.6)}
+html[data-theme="slate-dark"] .switch .knob{background:var(--gold)}
+html[data-theme="slate-dark"] .switch button.on{color:#111}
+/* large dark panels → elevated with gold hairline */
+html[data-theme="slate-dark"] .stage,html[data-theme="slate-dark"] .cmp-box.j,html[data-theme="slate-dark"] .cta-in,html[data-theme="slate-dark"] .tn.core{background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(196,160,106,.10),transparent 70%),#1B2229;box-shadow:inset 0 0 0 1px rgba(196,160,106,.18)}
+html[data-theme="slate-dark"] .tbl th{background:#212932}
+/* header: frosted dark when scrolled; active pill gold */
+html[data-theme="slate-dark"] .hdr.scrolled{background:rgba(21,26,32,.78);border-bottom-color:rgba(255,255,255,.08);box-shadow:0 10px 30px -20px rgba(0,0,0,.8)}
+html[data-theme="slate-dark"] .nav.seg{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+html[data-theme="slate-dark"] .nav.seg a[aria-current="page"],html[data-theme="slate-dark"] body.hero-dark .hdr:not(.scrolled) .nav.seg a[aria-current="page"]{background:var(--gold);color:#111}
+html[data-theme="slate-dark"] .dd-in{background:#1A2027;border-color:rgba(255,255,255,.08);box-shadow:0 30px 60px -20px rgba(0,0,0,.85)}
+html[data-theme="slate-dark"] .dd-in a:hover{background:rgba(196,160,106,.1)}
+html[data-theme="slate-dark"] body.hero-dark .hdr:not(.scrolled) .nav.seg .dd-in a{color:var(--ink)}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all,html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:hover{background:var(--gold);color:#111}
+html[data-theme="slate-dark"] body.hero-dark .hdr:not(.scrolled) .nav.seg .dd-mega .dd-in .dd-all{color:#111}
+html[data-theme="slate-dark"] .mnav{background:#1A2027;border-color:rgba(255,255,255,.08)}
+/* modal / misc */
+html[data-theme="slate-dark"] .tm-x{background:rgba(20,19,17,.92)}
+html[data-theme="slate-dark"] .tm-dlg::backdrop{background:rgba(0,0,0,.7)}
+html[data-theme="slate-dark"] .pc-img{background:#212932}
+html[data-theme="slate-dark"] input,html[data-theme="slate-dark"] select,html[data-theme="slate-dark"] textarea{background:#1A2027;color:var(--ink);border-color:rgba(255,255,255,.14)}
+html[data-theme="slate-dark"] input::placeholder,html[data-theme="slate-dark"] textarea::placeholder{color:#77736c}
+html[data-theme="slate-dark"] img[src*="/images/team/"]{filter:saturate(.9)}
+html[data-theme="slate-dark"] .av.g{background:var(--gold);color:#111;box-shadow:none}
+html[data-theme="slate-dark"] .av.s{background:#29323C;color:var(--ink)}
+html[data-theme="slate-dark"] .prose li::marker,html[data-theme="slate-dark"] .bp-art li::marker{color:var(--gold)}
+
+html[data-theme="slate-dark"]{--gold:#C4A06A;--acc-rgb:196,160,106;--gold-hi:#E2CC9F;--gold-lo:#9C7B47;--line:rgba(237,240,243,.09);--line-2:rgba(237,240,243,.16);
+--particle:196,160,106;--display:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--dw:600;--dw3:600;--dt:-.035em}
+html[data-theme="slate-dark"] .hc-sec.hc-dark{background:#151A20}
+html[data-theme="slate-dark"] .hc-veil{background:radial-gradient(ellipse 50% 50% at 50% 46%,rgba(21,26,32,.9) 0%,rgba(21,26,32,.55) 58%,transparent 80%)}
+html[data-theme="slate-dark"] .hc-fade{background:linear-gradient(transparent,#151A20)}
+html[data-theme="slate-dark"] body.hero-dark .hdr.mid:not(.scrolled){background:rgba(21,26,32,.74)}
+html[data-theme="slate-dark"] .hdr.scrolled{background:rgba(21,26,32,.82)}
+html[data-theme="slate-dark"] ::selection{background:rgba(196,160,106,.35)}
+html[data-theme="slate-dark"] .h1,html[data-theme="slate-dark"] .h2,html[data-theme="slate-dark"] h1,html[data-theme="slate-dark"] h2,html[data-theme="slate-dark"] h3{font-optical-sizing:auto}
+
+/* ---- extra fixes found while checking every page (beyond the base theme) ---- */
+/* Mega menu: Inter is wider than Jost, give the columns a little more room */
+html[data-theme="slate-dark"] .dd-mega .dd-in{grid-template-columns:repeat(3,246px)}
+/* Mega menu initials badges were the same colour as the panel */
+html[data-theme="slate-dark"] .bdg{background:#212932;color:var(--gold);box-shadow:inset 0 0 0 1px rgba(196,160,106,.2)}
+html[data-theme="slate-dark"] .dd-in a:hover .bdg{background:var(--gold);color:#111}
+/* gold "View all" bar: arrow must be dark on brass */
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all svg{color:#111}
+/* FAQ answer panel + hero cards: keep the neutral slate tone instead of a warm near-black */
+html[data-theme="slate-dark"] .fx-panel{background:radial-gradient(90% 70% at 100% 0%,rgba(196,160,106,.2) 0%,transparent 60%),radial-gradient(80% 80% at 0% 100%,rgba(196,160,106,.1) 0%,transparent 60%),linear-gradient(160deg,#1E252D 0%,#161B21 55%,#10141A 100%)}
+html[data-theme="slate-dark"] .tm-x{background:rgba(26,32,39,.94)}
+html[data-theme="slate-dark"] input::placeholder,html[data-theme="slate-dark"] textarea::placeholder{color:#7B8794}
