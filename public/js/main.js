@@ -209,3 +209,7 @@ document.querySelectorAll('[data-team]').forEach(b=>b.addEventListener('click',(
 dlg.querySelector('.tm-x').addEventListener('click',()=>dlg.close());
 dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
 dlg.addEventListener('close',()=>{document.documentElement.style.overflow='';if(last)last.focus()})})();
+
+/* ---- Header: frosted background after scrolling ---- */
+(()=>{const h=document.querySelector('.hdr');if(!h)return;const hero=document.body.classList.contains('hero-dark')?document.querySelector('.hc-sec'):null;
+const f=()=>{const lim=hero?hero.offsetTop+hero.offsetHeight-86:20;h.classList.toggle('scrolled',window.scrollY>lim);h.classList.toggle('mid',!!hero&&window.scrollY>20&&window.scrollY<=lim)};addEventListener('scroll',f,{passive:true});addEventListener('resize',f);f()})();
