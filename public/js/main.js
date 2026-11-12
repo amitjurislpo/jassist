@@ -55,7 +55,7 @@ bentoEl.innerHTML=S.map((s,i)=>{
 $$('.svc').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
 
 /* ---- Why tabs ---- */
-const W=[['Dedicated Professionals','Get professionals assigned to your business based on your requirements.'],['Managed Support','J Assist handles coordination, performance monitoring and operational support.'],['Built Around Your Business','Your support team is structured around your actual workflow and requirements.'],['Flexible Scaling','Start with one professional and expand into a complete remote support team.'],['Cost-Efficient','Access skilled professionals without the overhead of traditional full-time hiring.']];
+const W=[['Dedicated Professionals','Get professionals assigned to your business based on your requirements.'],['Managed Support','JurisAssistMe handles coordination, performance monitoring and operational support.'],['Built Around Your Business','Your support team is structured around your actual workflow and requirements.'],['Flexible Scaling','Start with one professional and expand into a complete remote support team.'],['Cost-Efficient','Access skilled professionals without the overhead of traditional full-time hiring.']];
 const tabs=$('#tabs');
 let cur=-1;
 if(tabs){
@@ -114,7 +114,7 @@ car.addEventListener('scroll',carP,{passive:true});
 
 /* ---- Compare ---- */
 const CMP={t:['Recruitment','Interviews','Training','Administrative overhead','Replacement challenges','Higher operating costs'],j:['Professional matching','Dedicated support','Flexible staffing','Managed operations','Scalable teams','Business-focused support']};
-const NOTE={t:'<span>The traditional route: <b>time, cost and risk</b> stay with you.</span><span>Switch to compare →</span>',j:'<span>With J Assist: <b>we handle the work behind the hire.</b></span><a href="#contact" class="btn btn-gold">Build My Team '+arrow+'</a>'};
+const NOTE={t:'<span>The traditional route: <b>time, cost and risk</b> stay with you.</span><span>Switch to compare →</span>',j:'<span>With JurisAssistMe: <b>we handle the work behind the hire.</b></span><a href="#contact" class="btn btn-gold">Build My Team '+arrow+'</a>'};
 let placeKnob=()=>{};
 const box=$('#cmpBox');
 if(box){
@@ -165,3 +165,36 @@ function tzs(){$$('#hcTz .tzr').forEach(r=>{const o={};new Intl.DateTimeFormat('
 tzs();setInterval(tzs,30000);
 }
 })();
+
+/* ---- Blog table of contents: highlight the active section (scroll-spy + click) ---- */
+(()=>{const links=[...document.querySelectorAll('.toc a[href^="#"]')];if(!links.length)return;
+const heads=links.map(a=>document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)))).filter(Boolean);
+let lock=null;
+const set=id=>links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+const spy=()=>{if(lock)return set(lock);
+let cur=heads[0];for(const h of heads){if(h.getBoundingClientRect().top<=140)cur=h}
+if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)cur=heads[heads.length-1];
+if(window.scrollY<80&&heads[0].getBoundingClientRect().top>140)cur=null;
+set(cur?cur.id:'')};
+links.forEach(a=>a.addEventListener('click',()=>{lock=a.getAttribute('href').slice(1);set(lock)}));
+['wheel','touchmove','keydown','mousedown'].forEach(ev=>addEventListener(ev,e=>{if(ev==='mousedown'&&e.target.closest&&e.target.closest('.toc'))return;lock=null},{passive:true}));
+addEventListener('scroll',spy,{passive:true});addEventListener('resize',spy);spy();})();
+
+/* ---- FAQ: questions on the left, the selected answer animates in on the right (inline on mobile) ---- */
+document.querySelectorAll('[data-fx]').forEach(fx=>{
+const items=[...fx.querySelectorAll('.fx-item')],btns=items.map(i=>i.querySelector('button'));
+const panel=fx.querySelector('.fx-panel'),body=panel.querySelector('.fx-body'),q=panel.querySelector('.fx-q'),ans=panel.querySelector('.fx-a'),
+bg=panel.querySelector('.fx-bg'),eb=panel.querySelector('.fx-eyebrow b'),cnt=panel.querySelector('.fx-count b'),bars=[...panel.querySelectorAll('.fx-bars i')];
+const pad=n=>String(n+1).padStart(2,'0');let cur=-1;
+function go(i,focus){i=(i+items.length)%items.length;if(i===cur)return;const first=cur<0;cur=i;
+items.forEach((it,k)=>{it.classList.toggle('on',k===i);btns[k].setAttribute('aria-selected',k===i);btns[k].tabIndex=k===i?0:-1});
+q.textContent=btns[i].querySelector('.fx-t').textContent;ans.innerHTML=items[i].querySelector('.fx-ans').innerHTML;
+bg.textContent=eb.textContent=cnt.textContent=pad(i);bars.forEach((b,k)=>b.classList.toggle('on',k===i));
+panel.setAttribute('aria-labelledby',btns[i].id);
+if(!first){body.classList.remove('swap');void body.offsetWidth;body.classList.add('swap')}
+if(focus)btns[i].focus()}
+btns.forEach((b,i)=>{b.addEventListener('click',()=>go(i));
+b.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(i+1,true)}else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(i-1,true)}})});
+panel.querySelector('.fx-prev').addEventListener('click',()=>go(cur-1));
+panel.querySelector('.fx-next').addEventListener('click',()=>go(cur+1));
+go(0)});
