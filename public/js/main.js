@@ -28,22 +28,22 @@ const IC={
  pen:'<svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>',
  search:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>',
  shape:'<svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4.5"/><rect x="11" y="11" width="9.5" height="9.5" rx="2"/></svg>',
+ clip:'<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 4V3h6v1M8.5 10l1.5 1.5L13 8.5M8.5 16h7"/></svg>',
  ledger:'<svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7M8.5 11.5h7M8.5 15.5h4"/></svg>'
 };
 const vizCal=()=>{const days=['Mon','Tue','Wed','Thu','Fri'];const pat=[['k','','t g'],['','g',''],['t k','',''],['','k','g'],['g','t','']];
   return `<div class="viz"><h6>This week <em>Managed by your EA</em></h6><div class="cal">${days.map((d,i)=>`<div class="d"><b>${d}</b>${pat[i].map((c,j)=>`<span class="ev ${c}" style="animation-delay:${(i*.25+j*.4).toFixed(2)}s"></span>`).join('')}</div>`).join('')}</div></div>`;};
-const vizFn=()=>`<div class="viz"><h6>Pipeline <em>Illustrative</em></h6><div class="fn"><div><span>Leads</span><i style="--w:100%"></i></div><div><span>Contacted</span><i style="--w:76%;transition-delay:.15s"></i></div><div><span>Meetings</span><i style="--w:50%;transition-delay:.3s"></i></div><div><span>Opportunities</span><i style="--w:30%;transition-delay:.45s"></i></div></div></div>`;
 const vizSeo=()=>`<div class="viz"><h6>Organic visibility <em>Illustrative</em></h6><div class="seo"><svg viewBox="0 0 300 150" preserveAspectRatio="none"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D8C08A" stop-opacity=".45"/><stop offset="1" stop-color="#D8C08A" stop-opacity="0"/></linearGradient></defs><g class="grid"><line x1="0" y1="37" x2="300" y2="37"/><line x1="0" y1="75" x2="300" y2="75"/><line x1="0" y1="112" x2="300" y2="112"/></g><path class="ar" d="M0 130 C40 125 60 118 90 110 S150 95 180 70 S240 45 300 20 V150 H0Z"/><path class="ln" d="M0 130 C40 125 60 118 90 110 S150 95 180 70 S240 45 300 20"/><circle class="pt" cx="300" cy="20" r="5"/></svg></div><div class="kw"><span>local SEO</span><span>on-page</span><span>keywords</span><span>reporting</span></div></div>`;
 const vizLdg=()=>`<div class="viz"><h6>Ledger <em>Sample</em></h6><div class="ldg">${[['Invoice #1042','AR'],['Vendor payment','AP'],['Office supplies','Expense'],['Bank feed','Reconcile']].map((r,i)=>`<div>${r[0]}<span>${r[1]}</span><span class="ok" style="transition-delay:${.3+i*.25}s"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>`).join('')}</div></div>`;
+const vizAdm=()=>`<div class="viz"><h6>Task queue <em>Sample</em></h6><div class="ldg">${[['Data entry','Daily'],['Document prep','Weekly'],['File organization','Ongoing'],['Order follow-up','Daily']].map((r,i)=>`<div>${r[0]}<span>${r[1]}</span><span class="ok" style="transition-delay:${.3+i*.25}s"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>`).join('')}</div></div>`;
 const S=[
  ['Virtual Executive Assistant','Calendar management, email management, scheduling, research, travel coordination, reporting and administrative support.','cal',vizCal],
  ['Social Media Management','Content planning, scheduling, publishing, community management, analytics and social media support.','chat'],
  ['Website Development','Business websites, landing pages, WordPress development, maintenance, updates and technical support.','web'],
- ['Real Estate Support','Property research, lead management, CRM updates, listing support, appointment scheduling and administrative assistance.','home'],
- ['Sales & Lead Generation','Lead research, prospecting, cold calling, email outreach, appointment setting, CRM management and follow-ups.','trend',vizFn],
+ ['Administrative Support','Data entry, document preparation, file organization, inbox and order handling, record keeping, customer follow-up and day-to-day back-office support.','clip',vizAdm],
  ['Content Creation','Blogs, website content, social media content, email content, marketing copy and business communications.','pen'],
- ['SEO Management','Keyword research, on-page SEO, local SEO, content optimization, competitor research and reporting.','search'],
  ['Graphic Design','Social media creatives, presentations, advertisements, brochures, marketing materials and business graphics.','shape'],
+ ['SEO Management','Keyword research, on-page SEO, local SEO, content optimization, competitor research and reporting.','search',vizSeo],
  ['Bookkeeping & Accounting Support','Bookkeeping, accounts payable, accounts receivable, invoice management, expense tracking, accounting data entry and QuickBooks support.','ledger',vizLdg]
 ];
 const bentoEl=$('#bento');
@@ -152,7 +152,7 @@ document.fonts&&document.fonts.ready.then(()=>{placeKnob();carP();});
 
 /* ---- Hero: role chips, checklist, time zones ---- */
 if($('#hcTrack')){
-const CH=[['cal','Executive Assistant'],['chat','Social Media'],['web','Website Development'],['home','Real Estate Support'],['trend','Sales & Lead Gen'],['search','SEO'],['pen','Content Creation'],['shape','Graphic Design'],['ledger','Bookkeeping']];
+const CH=[['cal','Executive Assistant'],['clip','Administrative Support'],['chat','Social Media'],['web','Website Development'],['search','SEO'],['pen','Content Creation'],['shape','Graphic Design'],['ledger','Bookkeeping']];
 const chips=CH.map(c=>`<span class="rchip"><span class="ic">${IC[c[0]]}</span>${c[1].replace('&','&amp;')}</span>`).join('');
 $('#hcTrack').innerHTML=chips+chips;
 const hcRows=$$('#hcChecks .ck-row');let hci=0;
@@ -198,3 +198,14 @@ b.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e
 panel.querySelector('.fx-prev').addEventListener('click',()=>go(cur-1));
 panel.querySelector('.fx-next').addEventListener('click',()=>go(cur+1));
 go(0)});
+
+/* ---- Our Team: click a card to open the profile popup ---- */
+(()=>{const dlg=document.getElementById('tmDlg'),dataEl=document.getElementById('team-data');if(!dlg||!dataEl)return;
+const D=JSON.parse(dataEl.textContent),$d=id=>document.getElementById(id);let last=null;
+const open=i=>{const m=D[i];$d('tmImg').src=m.photo;$d('tmImg').alt=m.alt;$d('tmRole').textContent=m.role;$d('tmName').textContent=m.name;$d('tmBio').textContent=m.bio;
+const f=$d('tmFocus');f.innerHTML='';m.focus.forEach(t=>{const s=document.createElement('span');s.textContent=t;f.appendChild(s)});
+dlg.showModal();document.documentElement.style.overflow='hidden';dlg.scrollTop=0};
+document.querySelectorAll('[data-team]').forEach(b=>b.addEventListener('click',()=>{last=b;open(+b.dataset.team)}));
+dlg.querySelector('.tm-x').addEventListener('click',()=>dlg.close());
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+dlg.addEventListener('close',()=>{document.documentElement.style.overflow='';if(last)last.focus()})})();

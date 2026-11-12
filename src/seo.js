@@ -55,36 +55,20 @@ const SERVICE_SEO = {
       ['How do I start a website project with JurisAssistMe?', COMMON.hire]
     ]
   },
-  'real-estate-support': {
-    kw: 'real estate virtual assistant',
-    title: 'Real Estate Virtual Assistant Services | JurisAssistMe',
-    meta: 'Real estate virtual assistant for property research, lead management, CRM updates, listing support and scheduling for U.S. agents and brokerages.',
-    h1: 'Real Estate Virtual Assistant Services for U.S. Agents & Brokerages',
-    p1: 'Agents and brokerages lose hours to paperwork, follow-ups and scheduling. A JurisAssistMe real estate virtual assistant handles property research, lead management, CRM updates, listing support and appointment scheduling so you can spend more time with clients.',
-    p2: 'Your dedicated professional works in your CRM and systems, following your processes, and acts as an extension of your team. Start with one assistant and add roles as your pipeline grows.',
-    benefits: [['More time with clients', 'Hand off admin so agents can focus on showings, negotiations and relationships.'], ['Tidy lead follow-up', 'Leads are logged in your CRM and followed up consistently.'], ['Listing and scheduling help', 'Listing support and appointment scheduling handled for you.'], ['Scales with your pipeline', 'Add support when volume increases and adjust when it slows.']],
-    best: ['Real estate agents', 'Brokerages and teams', 'Property managers', 'Investors', 'Transaction coordinators'],
+  'administrative-support': {
+    kw: 'administrative support',
+    title: 'Administrative Support Services for U.S. Businesses | JurisAssistMe',
+    meta: 'Outsource administrative support: data entry, document preparation, file organization, record keeping and back-office tasks from a dedicated remote professional.',
+    h1: 'Administrative Support Services for U.S. Businesses',
+    p1: 'Back-office work piles up quickly. JurisAssistMe provides dedicated remote professionals for data entry, document preparation, file organization, inbox and order handling, record keeping, customer follow-up and day-to-day administrative support.',
+    p2: 'Your administrative professional works in your tools and follows your processes, keeping records tidy and routine work moving so you and your team can focus on the work only you can do. Start with a few tasks and add more as trust builds.',
+    benefits: [['Routine work off your desk', 'Hand off repetitive admin so your team can focus on higher-value work.'], ['Organized records', 'Files, documents and data kept tidy and easy to find.'], ['Works in your systems', 'Your professional uses your tools, templates and processes.'], ['Flexible hours', 'Start with the hours you need and adjust as the workload changes.']],
+    best: ['Small-business owners', 'Law and accounting firms', 'E-commerce stores', 'Real estate offices', 'Startups'],
     faqs: [
-      ['What does a real estate virtual assistant do?', 'Property research, lead management, CRM updates, listing support, appointment scheduling and administrative assistance.'],
-      ['Can a virtual assistant update my CRM and follow up with leads?', 'Yes. CRM updates and lead management are core tasks, handled in the system you already use.'],
-      ['Is this suitable for a small real estate team?', 'Yes. You can start with one professional and scale up as your team grows.'],
-      ['How do I hire a real estate virtual assistant?', COMMON.hire]
-    ]
-  },
-  'sales-lead-generation': {
-    kw: 'lead generation',
-    title: 'Sales & Lead Generation Services | Outsourced SDR | JurisAssistMe',
-    meta: 'Outsource lead research, prospecting, cold calling, email outreach, appointment setting and CRM follow-ups to a dedicated remote sales support professional.',
-    h1: 'Sales Support & Lead Generation Services for U.S. Businesses',
-    p1: 'A steady pipeline needs consistent prospecting. JurisAssistMe provides dedicated remote professionals for lead research, prospecting, cold calling, email outreach, appointment setting, CRM management and follow-ups, so your sales team can focus on closing.',
-    p2: 'Your sales support professional works from your target criteria, scripts and CRM, keeping records current and handing qualified conversations to you. Start with outreach for one offer and expand as results come in.',
-    benefits: [['Consistent prospecting', 'Daily outreach and follow-up instead of sporadic effort.'], ['Appointment setting', 'Conversations scheduled directly on your calendar.'], ['Clean CRM records', 'Contacts, notes and next steps kept up to date.'], ['Sales team focus', 'Your closers spend time on live opportunities, not research.']],
-    best: ['B2B service companies', 'Agencies and consultants', 'Real estate teams', 'Accounting and law firms', 'Startups'],
-    faqs: [
-      ['What is included in outsourced lead generation?', 'Lead research, prospecting, cold calling, email outreach, appointment setting, CRM management and follow-ups.'],
-      ['Can you set appointments on my calendar?', 'Yes. Appointment setting is part of the service, using your calendar and your qualification criteria.'],
-      ['Does JurisAssistMe guarantee sales results?', 'No. We provide dedicated professionals and managed support; results depend on your offer, market and process.'],
-      ['How do I start with a remote sales support professional?', COMMON.hire]
+      ['What does administrative support include?', 'Data entry, document preparation, file organization, inbox and order handling, record keeping, customer follow-up and general back-office support.'],
+      ['How is administrative support different from a virtual executive assistant?', 'A virtual executive assistant focuses on supporting a leader with calendar, email, travel and reporting. Administrative support covers back-office tasks such as data entry, documents, records and follow-ups. Many businesses use both.'],
+      ['Can the assistant work in my software and templates?', 'Yes. Your professional works in your systems and follows your processes. We confirm the tools during setup.'],
+      ['How do I hire an administrative assistant through JurisAssistMe?', COMMON.hire]
     ]
   },
   'content-creation': {
@@ -173,7 +157,7 @@ const INDUSTRY_SEO = [
     p1: 'Real estate runs on timely follow-up. JurisAssistMe provides virtual assistants for real estate agents and brokerages who handle listing coordination, CRM updates, lead follow-up, showing schedules and transaction paperwork.',
     p2: 'A dedicated professional works in your CRM and tools, keeping leads and listings organized while you focus on clients. Start with one assistant and scale with your pipeline.',
     tasks: ['Listing coordination and support', 'CRM updates and lead follow-up', 'Showing and appointment scheduling', 'Transaction paperwork support', 'Property research', 'Social media and design support'],
-    services: ['real-estate-support', 'virtual-executive-assistant', 'social-media-management', 'graphic-design'],
+    services: ['administrative-support', 'virtual-executive-assistant', 'social-media-management', 'graphic-design'],
     faqs: [['What can a real estate virtual assistant do for my brokerage?', 'Listing coordination, CRM updates, lead follow-up, showing schedules, property research and transaction paperwork support.'], ['Can the assistant work in my CRM?', 'Yes. Your professional works inside the CRM and tools you already use.'], ['Can I add marketing help for my listings?', 'Yes. Social media management and graphic design can be added to support your marketing.']]
   },
   {
@@ -204,10 +188,10 @@ const INDUSTRY_SEO = [
     meta: 'Remote virtual assistants for consultancies and agencies: executive assistance, proposal support, reporting and client communication.',
     h1: 'Virtual Assistants for Consultancies & Professional Services',
     p1: 'Consultancies and agencies sell expertise, not administration. JurisAssistMe provides virtual assistants for professional services firms who provide executive assistance, proposal support, reporting and client communication.',
-    p2: 'A dedicated professional keeps projects, schedules and client communication organized, working in your tools and following your processes. Add sales support and marketing roles as the firm grows.',
-    tasks: ['Executive assistance', 'Proposal and document support', 'Reporting', 'Client communication', 'Scheduling and coordination', 'Lead generation support'],
-    services: ['virtual-executive-assistant', 'sales-lead-generation', 'content-creation', 'graphic-design'],
-    faqs: [['How can a virtual assistant support a consultancy?', 'With executive assistance, proposal support, reporting, scheduling and client communication.'], ['Can I add lead generation to administrative support?', 'Yes. Sales and lead generation support can be added to fill your pipeline.'], ['Will the assistant work in our tools?', 'Yes. Your professional works in your systems, on your schedule.']]
+    p2: 'A dedicated professional keeps projects, schedules and client communication organized, working in your tools and following your processes. Add administrative support and marketing roles as the firm grows.',
+    tasks: ['Executive assistance', 'Proposal and document support', 'Reporting', 'Client communication', 'Scheduling and coordination', 'Administrative and back-office support'],
+    services: ['virtual-executive-assistant', 'administrative-support', 'content-creation', 'graphic-design'],
+    faqs: [['How can a virtual assistant support a consultancy?', 'With executive assistance, proposal support, reporting, scheduling and client communication.'], ['Can I add administrative support to executive assistance?', 'Yes. Administrative support can be added for data entry, documents and records.'], ['Will the assistant work in our tools?', 'Yes. Your professional works in your systems, on your schedule.']]
   },
   {
     slug: 'startups-small-businesses', name: 'Startups & Small Businesses', kw: 'virtual assistant for small business',
@@ -215,10 +199,10 @@ const INDUSTRY_SEO = [
     meta: 'Virtual assistants for startups and small businesses: start with one assistant and grow into a full remote team without building HR.',
     h1: 'Virtual Assistants for Startups & Small Businesses',
     p1: 'Small teams wear many hats. JurisAssistMe gives startups and small businesses a flexible bench of virtual specialists, from your first assistant to a full remote support team, without building HR from scratch.',
-    p2: 'Begin with one role, such as a virtual executive assistant, and add sales, marketing, design, website or bookkeeping support as you grow. A managed model means matching and coordination are handled for you.',
-    tasks: ['Executive and admin support', 'Sales and lead generation', 'Social media and content', 'Website and design support', 'Bookkeeping support', 'A growing multi-role team'],
-    services: ['virtual-executive-assistant', 'sales-lead-generation', 'social-media-management', 'bookkeeping-accounting-support'],
-    faqs: [['Can a small business start with just one virtual assistant?', 'Yes. Start with one professional and expand into a larger remote team over time.'], ['Do I need to handle HR and payroll for a virtual assistant?', 'JurisAssistMe handles matching, coordination and managed support, so you are not building HR processes from scratch.'], ['What roles should a startup hire first?', 'Many start with an executive assistant, then add sales, marketing or bookkeeping support. We can recommend a structure for your business.']]
+    p2: 'Begin with one role, such as a virtual executive assistant, and add administrative, marketing, design, website or bookkeeping support as you grow. A managed model means matching and coordination are handled for you.',
+    tasks: ['Executive and admin support', 'Administrative support', 'Social media and content', 'Website and design support', 'Bookkeeping support', 'A growing multi-role team'],
+    services: ['virtual-executive-assistant', 'administrative-support', 'social-media-management', 'bookkeeping-accounting-support'],
+    faqs: [['Can a small business start with just one virtual assistant?', 'Yes. Start with one professional and expand into a larger remote team over time.'], ['Do I need to handle HR and payroll for a virtual assistant?', 'JurisAssistMe handles matching, coordination and managed support, so you are not building HR processes from scratch.'], ['What roles should a startup hire first?', 'Many start with an executive assistant, then add administrative, marketing or bookkeeping support. We can recommend a structure for your business.']]
   }
 ];
 
@@ -227,15 +211,15 @@ const PAGE_COPY = {
   index: {
     kicker: 'About our services', h2: 'Virtual Assistant Services & Remote Teams for U.S. Businesses',
     paras: [
-      'JurisAssistMe provides <a href="/services">virtual assistant services</a> and dedicated remote teams for U.S. businesses. Whether you need a <a href="/services/virtual-executive-assistant">virtual executive assistant</a>, <a href="/services/sales-lead-generation">lead generation support</a>, <a href="/services/bookkeeping-accounting-support">bookkeeping support</a> or a complete remote team, we match you with professionals who work as part of your business.',
+      'JurisAssistMe provides <a href="/services">virtual assistant services</a> and dedicated remote teams for U.S. businesses. Whether you need a <a href="/services/virtual-executive-assistant">virtual executive assistant</a>, <a href="/services/administrative-support">administrative support</a>, <a href="/services/bookkeeping-accounting-support">bookkeeping support</a> or a complete remote team, we match you with professionals who work as part of your business.',
       'Unlike a freelancer marketplace, JurisAssistMe is a managed service: we match, coordinate and support your professional, and you interview them before they join. It is a practical alternative to traditional hiring for <a href="/industries/law-firms">law firms</a>, <a href="/industries/real-estate">real estate agents</a>, <a href="/industries/accounting-cpa-firms">accounting firms</a>, <a href="/industries/e-commerce">e-commerce stores</a> and <a href="/industries/startups-small-businesses">small businesses</a>.',
       'Explore <a href="/solutions">how it works</a>, learn <a href="/why-jurisassistme">why businesses choose managed virtual assistants</a>, or <a href="/contact">contact us</a> to build your team.'
     ]
   },
   services: {
-    kicker: 'Our services', h2: 'Outsourced Business Support Across Nine Specialties',
+    kicker: 'Our services', h2: 'Outsourced Business Support Across Eight Specialties',
     paras: [
-      'JurisAssistMe offers outsourced business support in nine specialties: <a href="/services/virtual-executive-assistant">virtual executive assistant</a>, <a href="/services/social-media-management">social media management</a>, <a href="/services/website-development">website development</a>, <a href="/services/real-estate-support">real estate support</a>, <a href="/services/sales-lead-generation">sales and lead generation</a>, <a href="/services/content-creation">content creation</a>, <a href="/services/seo-management">SEO management</a>, <a href="/services/graphic-design">graphic design</a> and <a href="/services/bookkeeping-accounting-support">bookkeeping and accounting support</a>.',
+      'JurisAssistMe offers outsourced business support in eight specialties: <a href="/services/virtual-executive-assistant">virtual executive assistant</a>, <a href="/services/social-media-management">social media management</a>, <a href="/services/administrative-support">administrative support</a>, <a href="/services/website-development">website development</a>, <a href="/services/content-creation">content creation</a>, <a href="/services/seo-management">SEO management</a>, <a href="/services/graphic-design">graphic design</a> and <a href="/services/bookkeeping-accounting-support">bookkeeping and accounting support</a>.',
       'Each service is delivered by a dedicated remote professional matched to your requirements. You can start with a single role and add more over time, building a complete remote team under one account manager.'
     ]
   },

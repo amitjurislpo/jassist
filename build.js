@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { SERVICES, PAGE_FAQS } = require('./src/data');
 const { BLOGS } = require('./src/blogs');
+const { TEAM } = require('./src/team');
 const { SERVICE_SEO, INDUSTRY_SEO, PAGE_COPY } = require('./src/seo');
 
 const SRC = path.join(__dirname, 'src', 'pages');
@@ -33,7 +34,7 @@ const NAV = [
 
 const STATIC = [
   { slug: 'index', nav: null, url: '/', title: 'JurisAssistMe | Your Trusted Virtual Assistance Partner', desc: 'JurisAssistMe provides dedicated virtual assistants and managed remote teams for U.S. businesses: executive assistants, sales, marketing, bookkeeping and more.' },
-  { slug: 'services', nav: 'services', url: '/services', title: 'Virtual Assistant & Remote Support Services | JurisAssistMe', desc: 'Nine specialties: virtual executive assistant, social media, website development, real estate support, lead generation, content, SEO, design and bookkeeping.' },
+  { slug: 'services', nav: 'services', url: '/services', title: 'Virtual Assistant & Remote Support Services | JurisAssistMe', desc: 'Eight specialties: virtual executive assistant, administrative support, social media, website development, content, SEO, design and bookkeeping.' },
   { slug: 'solutions', nav: 'solutions', url: '/solutions', title: 'How to Hire a Virtual Assistant: Our 4-Step Process | JurisAssistMe', desc: 'Tell us what you need, get matched, interview your virtual assistant and start growing. See how JurisAssistMe builds your remote team.' },
   { slug: 'why-jurisassistme', nav: 'why-jurisassistme', url: '/why-jurisassistme', title: 'Managed Virtual Assistants vs. Freelancers | JurisAssistMe', desc: 'JurisAssistMe is not a freelancer marketplace. We match, manage and support dedicated virtual professionals who work as part of your team.' },
   { slug: 'industries', nav: 'industries', url: '/industries', title: 'Virtual Assistants for Law Firms, Real Estate & More', desc: 'Virtual assistant support for law firms, real estate, accounting and CPA firms, e-commerce, professional services, startups and small businesses.' },
@@ -234,6 +235,7 @@ ${footer()}
 
 function fill(s) {
   return s
+    .replace(/\{\{team\}\}/g, () => teamSection())
     .replace(/\{\{arrow\}\}/g, arrow)
     .replace(/\{\{back\}\}/g, back)
     .replace(/\{\{check\}\}/g, check)
@@ -351,6 +353,40 @@ ${ctaBlock}`;
     title: d.title, desc: d.meta, faqs: d.faqs, body,
     crumbs: [['Industries', '/industries'], [d.name, '/industries/' + d.slug]]
   };
+}
+
+// ---- Our Team (about page): cards open a popup with the person's details ----
+function teamSection() {
+  const photo = m => '/images/team/' + m.photo;
+  const alt = m => `Sample photo of ${m.name}, ${m.role}`;
+  const data = TEAM.map(m => ({ name: m.name, role: m.role, photo: photo(m), alt: alt(m), bio: m.bio, focus: m.focus }));
+  return `<section class="team-sec" id="our-team" aria-labelledby="tm-h">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="kicker"><b>Our Team</b> The people behind your team</span><h2 class="h2" id="tm-h">Meet Our <span class="gg-d">Team.</span></h2><p class="lead">Click a card to learn more about each person.</p></div>
+    <ul class="tm-grid">${TEAM.map((m, i) => `
+      <li class="rv${i % 3 ? ' d' + (i % 3) : ''}"><button type="button" class="tm-card" data-team="${i}" aria-haspopup="dialog" aria-label="View profile: ${esc(m.name)}, ${esc(m.role)}">
+        <span class="tm-ph"><img src="${photo(m)}" alt="${esc(alt(m))}" width="600" height="750" loading="lazy" decoding="async"></span>
+        <span class="tm-info"><span class="tm-n">${esc(m.name)}</span><span class="tm-r">${esc(m.role)}</span><span class="tm-v">View profile {{arrow}}</span></span>
+      </button></li>`).join('')}
+    </ul>
+  </div>
+  <dialog class="tm-dlg" id="tmDlg" aria-labelledby="tmName">
+    <button type="button" class="tm-x" aria-label="Close profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="tm-dc">
+      <div class="tm-dph"><img id="tmImg" src="" alt="" width="600" height="750"></div>
+      <div class="tm-dtx">
+        <span class="tagc" id="tmRole"></span>
+        <h3 id="tmName"></h3>
+        <p id="tmBio"></p>
+        <h4>Focus areas</h4>
+        <div class="tags-l" id="tmFocus"></div>
+        <a href="/contact" class="btn btn-dark">Work with our team {{arrow}}</a>
+      </div>
+    </div>
+  </dialog>
+  <script type="application/json" id="team-data">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>
+</section>
+`;
 }
 
 // ---- Blog ----
