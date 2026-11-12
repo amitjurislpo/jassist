@@ -3,7 +3,7 @@
   if (!cv) return;
   const hero = cv.closest('.hc-sec'), box = cv.parentElement, x = cv.getContext('2d');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const GOLD = '216,192,138';
+  const GOLD = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim() || '216,192,138';
   let w = 0, h = 0, raf = 0, running = false, mouseX = null, shift = 0;
 
   function size() {

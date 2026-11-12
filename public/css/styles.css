@@ -400,17 +400,17 @@ section{scroll-margin-top:calc(var(--mnav-top) + 20px)}
 a.res-card,.post-card,.rel-card{transition:transform .5s var(--ease),background .4s,box-shadow .5s var(--ease)}
 a.res-card:hover,.post-card:hover,.rel-card:hover{transform:translateY(-4px);background:var(--paper);box-shadow:0 30px 50px -36px rgba(var(--ink-rgb),.35),0 0 0 1px var(--line)}
 a.res-card:hover .more svg,.post-card:hover .more svg,.rel-card:hover .more svg{transform:translateX(4px)}
-.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.post-grid{display:grid;grid-template-columns:repeat(auto-fill,300px);gap:18px;justify-content:start}
 .post-card{display:flex;flex-direction:column;background:var(--surface);border-radius:var(--r);padding:0;overflow:hidden}
-.pc-img{display:block;aspect-ratio:16/9;overflow:hidden;background:#111}
+.pc-img{display:block;aspect-ratio:16/8.5;overflow:hidden;background:#111}
 .pc-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .post-card:hover .pc-img img{transform:scale(1.04)}
-.pc-body{display:flex;flex-direction:column;flex:1;padding:26px 28px 28px}
+.pc-body{display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
 .post-card .tagc{align-self:flex-start}
-.post-card h2{font-family:var(--display);font-weight:var(--dw3);letter-spacing:var(--dt3);font-size:23px;line-height:1.2;margin:16px 0 10px}
-.post-card p{color:var(--muted);font-size:14.5px}
-.post-card small{color:var(--muted);font-size:12.5px;margin-top:14px}
-.post-card .more{margin-top:auto;padding-top:18px}
+.post-card h2{font-family:var(--display);font-weight:var(--dw3);letter-spacing:var(--dt3);font-size:18px;line-height:1.25;margin:12px 0 8px}
+.post-card p{color:var(--muted);font-size:13.5px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.post-card small{color:var(--muted);font-size:12px;margin-top:10px}
+.post-card .more{margin-top:auto;padding-top:12px;font-size:13px}
 .crumbs{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--muted);margin-bottom:22px}
 .crumbs a:hover{color:var(--ink)}
 .crumbs [aria-current]{color:var(--ink);font-weight:600}
@@ -487,7 +487,7 @@ section.first,article.first{padding-top:var(--hero-top)}
   .burger{display:flex}
   .hdr .hcta{display:none}
   .trust-in,.why-in,.about-in,.contact-in,.sv-in{grid-template-columns:1fr}
-  .post-grid,.rel-grid{grid-template-columns:1fr 1fr}
+  .rel-grid{grid-template-columns:1fr 1fr}
   .how-in{grid-template-columns:1fr;gap:48px}
   .how-l{position:static}
   .bento{grid-template-columns:1fr 1fr}
