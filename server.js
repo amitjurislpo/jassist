@@ -33,4 +33,4 @@ http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream' });
     res.end(data);
   });
-}).listen(PORT, () => console.log(`J Assist running at http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`JurisAssistMe running at http://localhost:${PORT}`));
