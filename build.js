@@ -33,7 +33,7 @@ const NAV = [
 ];
 
 const STATIC = [
-  { slug: 'index', nav: null, url: '/', title: 'JurisAssistMe | Your Trusted Virtual Assistance Partner', desc: 'JurisAssistMe provides dedicated virtual assistants and managed remote teams for U.S. businesses: executive assistants, sales, marketing, bookkeeping and more.' },
+  { slug: 'index', nav: null, bodyClass: 'hero-dark', scripts: ['/js/hero-ocean.js'], url: '/', title: 'JurisAssistMe | Your Trusted Virtual Assistance Partner', desc: 'JurisAssistMe provides dedicated virtual assistants and managed remote teams for U.S. businesses: executive assistants, sales, marketing, bookkeeping and more.' },
   { slug: 'services', nav: 'services', url: '/services', title: 'Virtual Assistant & Remote Support Services | JurisAssistMe', desc: 'Eight specialties: virtual executive assistant, administrative support, social media, website development, content, SEO, design and bookkeeping.' },
   { slug: 'solutions', nav: 'solutions', url: '/solutions', title: 'How to Hire a Virtual Assistant: Our 4-Step Process | JurisAssistMe', desc: 'Tell us what you need, get matched, interview your virtual assistant and start growing. See how JurisAssistMe builds your remote team.' },
   { slug: 'why-jurisassistme', nav: 'why-jurisassistme', url: '/why-jurisassistme', title: 'Managed Virtual Assistants vs. Freelancers | JurisAssistMe', desc: 'JurisAssistMe is not a freelancer marketplace. We match, manage and support dedicated virtual professionals who work as part of your team.' },
@@ -47,24 +47,36 @@ const STATIC = [
 
 const logo = '<a href="/" class="logo" aria-label="JurisAssistMe home"><span class="mk">J</span><span class="as">Juris<b>Assist</b><em>Me</em></span></a>';
 
+// Initials shown in the Services mega menu badges (fallback: first letters of the name).
+const SVC_INITIALS = {
+  'virtual-executive-assistant': 'EA', 'administrative-support': 'AS', 'social-media-management': 'SM', 'website-development': 'WD',
+  'content-creation': 'CC', 'seo-management': 'SE', 'graphic-design': 'GD', 'bookkeeping-accounting-support': 'BK'
+};
+const initials = (slug, name) => SVC_INITIALS[slug] || name.replace(/&/g, ' ').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+
 function header(active) {
   const menus = {
-    services: SERVICES.map(s => [`/services/${s.slug}`, s.name]),
+    services: SERVICES.map(s => [`/services/${s.slug}`, s.name, initials(s.slug, s.name)]),
     industries: INDUSTRY_SEO.map(d => [`/industries/${d.slug}`, d.name])
   };
   const link = ([k, href, label]) => `<a href="${href}"${k === active ? ' aria-current="page"' : ''}>${label}</a>`;
   const links = NAV.map(link).join('');
-  const navDesktop = NAV.map(n => menus[n[0]]
-    ? `<div class="dd">${link(n).replace('<a ', '<a aria-haspopup="true" ')}<div class="dd-menu"><div class="dd-in">${menus[n[0]].map(([h, t]) => `<a href="${h}">${esc(t)}</a>`).join('')}<a href="${n[1]}" class="dd-all">View all ${n[2].toLowerCase()} ${arrow}</a></div></div></div>`
-    : link(n)).join('');
+  const dropdown = n => {
+    const mega = n[0] === 'services';
+    const items = menus[n[0]].map(([h, t, ini]) => `<a href="${h}">${mega ? `<span class="bdg" aria-hidden="true">${ini}</span>` : ''}<span>${esc(t)}</span></a>`).join('');
+    return `<div class="dd${mega ? ' dd-mega' : ''}">${link(n).replace('<a ', '<a aria-haspopup="true" ')}<div class="dd-menu"><div class="dd-in">${items}<a href="${n[1]}" class="dd-all"><span>View all ${n[2].toLowerCase()}</span>${arrow}</a></div></div></div>`;
+  };
+  const navDesktop = NAV.map(n => menus[n[0]] ? dropdown(n) : link(n)).join('');
   return `<a class="skip" href="#main">Skip to content</a>
 
 <header class="hdr">
-  ${logo}
-  <nav class="nav" aria-label="Main">${navDesktop}</nav>
-  <div class="hr">
-    <a href="/contact" class="btn btn-gold">Get Started ${arrow}</a>
-    <button class="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  <div class="wrap hdr-in">
+    ${logo}
+    <nav class="nav seg" aria-label="Main">${navDesktop}</nav>
+    <div class="hr">
+      <a href="/contact" class="hcta">Get Started ${arrow}</a>
+      <button class="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -218,7 +230,7 @@ ${page.keywords ? `<meta name="keywords" content="${esc(page.keywords.join(', ')
 <link rel="stylesheet" href="/css/styles.css">
 ${ld}
 </head>
-<body>
+<body${page.bodyClass ? ` class="${page.bodyClass}"` : ''}>
 ${header(page.nav)}
 
 <main id="main">
@@ -227,7 +239,7 @@ ${body}
 
 ${footer()}
 
-<script src="/js/main.js"></script>
+<script src="/js/main.js"></script>${(page.scripts || []).map(s => `\n<script src="${s}" defer></script>`).join('')}
 </body>
 </html>
 `;
