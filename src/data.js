@@ -2,10 +2,9 @@
 
 const SERVICES = [
   { slug: 'virtual-executive-assistant', name: 'Virtual Executive Assistant', desc: 'Calendar management, email management, scheduling, research, travel coordination, reporting and administrative support.', items: ['Calendar management', 'Email management', 'Scheduling', 'Research', 'Travel coordination', 'Reporting', 'Administrative support'] },
+  { slug: 'administrative-support', name: 'Administrative Support', desc: 'Data entry, document preparation, file organization, inbox and order handling, record keeping, customer follow-up and day-to-day back-office support.', items: ['Data entry', 'Document preparation', 'File organization', 'Inbox and order handling', 'Record keeping', 'Customer follow-up', 'Back-office support'] },
   { slug: 'social-media-management', name: 'Social Media Management', desc: 'Content planning, scheduling, publishing, community management, analytics and social media support.', items: ['Content planning', 'Scheduling', 'Publishing', 'Community management', 'Analytics', 'Social media support'] },
   { slug: 'website-development', name: 'Website Development', desc: 'Business websites, landing pages, WordPress development, maintenance, updates and technical support.', items: ['Business websites', 'Landing pages', 'WordPress development', 'Maintenance', 'Updates', 'Technical support'] },
-  { slug: 'real-estate-support', name: 'Real Estate Support', desc: 'Property research, lead management, CRM updates, listing support, appointment scheduling and administrative assistance.', items: ['Property research', 'Lead management', 'CRM updates', 'Listing support', 'Appointment scheduling', 'Administrative assistance'] },
-  { slug: 'sales-lead-generation', name: 'Sales & Lead Generation', desc: 'Lead research, prospecting, cold calling, email outreach, appointment setting, CRM management and follow-ups.', items: ['Lead research', 'Prospecting', 'Cold calling', 'Email outreach', 'Appointment setting', 'CRM management', 'Follow-ups'] },
   { slug: 'content-creation', name: 'Content Creation', desc: 'Blogs, website content, social media content, email content, marketing copy and business communications.', items: ['Blogs', 'Website content', 'Social media content', 'Email content', 'Marketing copy', 'Business communications'] },
   { slug: 'seo-management', name: 'SEO Management', desc: 'Keyword research, on-page SEO, local SEO, content optimization, competitor research and reporting.', items: ['Keyword research', 'On-page SEO', 'Local SEO', 'Content optimization', 'Competitor research', 'Reporting'] },
   { slug: 'graphic-design', name: 'Graphic Design', desc: 'Social media creatives, presentations, advertisements, brochures, marketing materials and business graphics.', items: ['Social media creatives', 'Presentations', 'Advertisements', 'Brochures', 'Marketing materials', 'Business graphics'] },
@@ -21,12 +20,12 @@ const serviceFaqs = s => [
 
 const PAGE_FAQS = {
   index: [
-    ['What is JurisAssistMe?', 'JurisAssistMe provides dedicated virtual professionals and managed remote support to U.S. businesses across operations, sales, marketing, finance, real estate and technology.'],
+    ['What is JurisAssistMe?', 'JurisAssistMe provides dedicated virtual professionals and managed remote support to U.S. businesses across administration, operations, marketing, finance and technology.'],
     ['Is JurisAssistMe a freelancer marketplace?', 'No. We match, manage and support professionals who work as part of your team, with coordination, performance monitoring and continuity handled for you.'],
     ['Which time zones do you cover?', 'We support U.S. businesses across Eastern, Central, Mountain and Pacific time, with flexible working hours.']
   ],
   services: [
-    ['Can I combine more than one service?', 'Yes. Many businesses start with one role and add others, such as an executive assistant alongside lead generation or bookkeeping support.'],
+    ['Can I combine more than one service?', 'Yes. Many businesses start with one role and add others, such as an executive assistant alongside administrative or bookkeeping support.'],
     ['Do I get to meet the professional first?', 'Yes. You review the profile and interview the selected professional before moving forward.'],
     ['How much do services cost?', 'Pricing is confirmed per engagement based on the roles, scope and hours you need. Contact us for a recommendation.']
   ],
@@ -45,7 +44,7 @@ const PAGE_FAQS = {
     ['Can support scale with busy seasons?', 'Yes. Flexible scaling means you can add professionals when workload peaks, such as tax season for accounting firms.']
   ],
   about: [
-    ['What does JurisAssistMe do?', 'We help U.S. businesses access skilled virtual professionals across business support, sales, marketing, finance, real estate and technology.'],
+    ['What does JurisAssistMe do?', 'We help U.S. businesses access skilled virtual professionals across administration, business support, marketing, finance and technology.'],
     ['How do I get started?', 'Contact us by email or phone. We will learn what you need and come back with a recommended team structure.']
   ],
   contact: [
