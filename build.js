@@ -217,6 +217,10 @@ const GOOGLE_TAG = `<script async src="https://www.googletagmanager.com/gtm.js?i
   gtag('js', new Date());
 </script>`;
 
+// Google Search Console ownership verification (HTML tag method). Only the home page needs it. Do not remove it,
+// or Search Console will lose verification.
+const GOOGLE_VERIFICATION = '<meta name="google-site-verification" content="uw4DVYQZtlLIXRI_f4-SuBLrxsTg5KuNt213d3RcUok" />';
+
 function render(page, body) {
   const extra = EXTRA_FAQS[page.slug] || [];
   const seen = new Set((page.faqs || []).map(f => f[0].toLowerCase()));
@@ -236,7 +240,7 @@ ${GOOGLE_TAG}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(page.title)}</title>
-<meta name="description" content="${esc(page.desc)}">${canon}${noindex}
+<meta name="description" content="${esc(page.desc)}">${page.slug === 'index' ? `\n${GOOGLE_VERIFICATION}` : ''}${canon}${noindex}
 <meta property="og:title" content="${esc(page.title)}">
 <meta property="og:description" content="${esc(page.desc)}">
 <meta property="og:type" content="${page.ogType || 'website'}">
