@@ -208,6 +208,15 @@ const orgLd = `<script type="application/ld+json">${JSON.stringify({ '@context':
 
 const FAVICON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#D8C08A"/><text x="16" y="23" font-family="Georgia,serif" font-size="20" font-weight="700" text-anchor="middle" fill="#111">J</text></svg>');
 
+// Google tag (Analytics / Tag Manager container GTM-KV57439L). Google asks for it right after <head> on every page;
+// it is added once here, so every generated page (including 404) gets exactly one copy.
+const GOOGLE_TAG = `<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KV57439L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>`;
+
 function render(page, body) {
   const extra = EXTRA_FAQS[page.slug] || [];
   const seen = new Set((page.faqs || []).map(f => f[0].toLowerCase()));
@@ -223,6 +232,7 @@ function render(page, body) {
   return `<!doctype html>
 <html lang="en" data-theme="slate-dark">
 <head>
+${GOOGLE_TAG}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(page.title)}</title>
@@ -535,5 +545,13 @@ if (SITE_URL) {
   const urls = pages.filter(p => !p.noindex).map(p => `  <url><loc>${SITE_URL}${p.url}</loc></url>`).join(NL);
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', urls, '</urlset>', ''].join(NL));
 }
-fs.writeFileSync(path.join(OUT, 'robots.txt'), ['User-agent: *', 'Allow: /', ...(SITE_URL ? [`Sitemap: ${SITE_URL}/sitemap.xml`] : []), ''].join(NL));
+// robots.txt: everything is crawlable. AI search / answer-engine crawlers are listed explicitly (instead of relying on
+// the "*" rule) so a future edit cannot silently block JurisAssistMe from AI search results. Add or remove bots here.
+const AI_BOTS = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended'];
+fs.writeFileSync(path.join(OUT, 'robots.txt'), [
+  'User-agent: *', 'Disallow:', 'Allow: /', '',
+  '# AI search and answer-engine crawlers, allowed explicitly so JurisAssistMe can be found and cited in AI answers.',
+  ...AI_BOTS.flatMap(b => [`User-agent: ${b}`, 'Allow: /', '']),
+  ...(SITE_URL ? [`Sitemap: ${SITE_URL}/sitemap.xml`] : []), ''
+].join(NL));
 console.log(`Built ${pages.length} pages`);
