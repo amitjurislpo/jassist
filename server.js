@@ -20,7 +20,20 @@ const TYPES = {
   '.txt': 'text/plain; charset=utf-8'
 };
 
+// Same permanent redirects as vercel.json (301, query string kept, single hop).
+const REDIRECTS = {
+  '/why-j-assist': '/why-jurisassistme',
+  '/services/sales-lead-generation': '/services',
+  '/services/real-estate-support': '/industries/real-estate'
+};
+
 http.createServer((req, res) => {
+  const [rawPath, ...q] = req.url.split('?');
+  const rp = rawPath.length > 1 ? rawPath.replace(/\/$/, '') : rawPath;
+  if (REDIRECTS[rp]) {
+    res.writeHead(301, { Location: REDIRECTS[rp] + (q.length ? '?' + q.join('?') : '') });
+    return res.end();
+  }
   let urlPath;
   try { urlPath = decodeURIComponent(req.url.split('?')[0]); } catch { urlPath = '/'; }
   if (urlPath.endsWith('/')) urlPath += 'index.html';
