@@ -10,7 +10,9 @@ const { SERVICE_SEO, INDUSTRY_SEO, PAGE_COPY } = require('./src/seo');
 
 const SRC = path.join(__dirname, 'src', 'pages');
 const OUT = path.join(__dirname, 'public');
-const SITE_URL = (process.env.SITE_URL || 'https://jurisassistme.com').replace(/\/$/, '');
+// Canonical host. Must match the primary domain in Vercel: non-www redirects (308) to www, so canonical tags,
+// sitemap.xml, robots.txt and JSON-LD all use www. If the primary domain ever changes, change it here too.
+const SITE_URL = (process.env.SITE_URL || 'https://www.jurisassistme.com').replace(/\/$/, '');
 
 const EMAIL = 'contact@jurisassistme.com';
 const PHONE_DISPLAY = '+1 (646) 233-8454';
