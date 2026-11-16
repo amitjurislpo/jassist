@@ -49,7 +49,7 @@ const PAGE_FAQS = {
   ],
   contact: [
     ['What should I include when I reach out?', 'The roles you need, your preferred working hours and time zone, and the tools your team already uses. Rough is fine; we will refine it together.'],
-    ['When can I call?', 'Our phone line is open Monday to Friday, 9 AM to 6 PM.']
+    ['When can I call?', 'Our phone line is open {{hours}}.']
   ]
 };
 

@@ -376,7 +376,7 @@ section{scroll-margin-top:calc(var(--mnav-top) + 20px)}
 
 /* ---------- Resources / legal ---------- */
 .res{padding:72px 0}
-.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto}
+.res-grid{display:grid;grid-template-columns:minmax(0,480px);justify-content:center;gap:16px;max-width:900px;margin:0 auto}
 .res-card{background:var(--surface);border-radius:var(--r);padding:30px}
 .res-card h2{font-family:var(--display);font-weight:var(--dw3);letter-spacing:var(--dt3);font-size:26px;margin:14px 0 8px}
 .res-card p{color:var(--muted);font-size:14.5px}
@@ -738,8 +738,8 @@ section.first,article.first{padding-top:var(--hero-top)}
 /* ---------- Our Team (about) ---------- */
 .team-sec{padding:24px 0 80px}
 .team-sec .sec-head{margin-bottom:40px}
-.tm-grid{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:18px;max-width:1180px}
-.tm-grid>li{width:calc(20% - 14.4px)}
+.tm-grid{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:20px;max-width:1080px}
+.tm-grid>li{width:calc(25% - 15px)}
 .tm-card{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;border-radius:22px;background:var(--surface);padding:10px 10px 16px;text-align:center;position:relative;overflow:hidden;isolation:isolate;transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .4s}
 .tm-card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px circle at 50% 0%,rgba(var(--acc-rgb),.4),transparent 70%);opacity:0;transition:opacity .5s}
 .tm-card:hover,.tm-card:focus-visible{transform:translateY(-6px);background:var(--paper);box-shadow:0 30px 50px -34px rgba(var(--ink-rgb),.5),0 0 0 1px var(--gold)}
@@ -774,13 +774,10 @@ section.first,article.first{padding-top:var(--hero-top)}
 .tm-dtx h4{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text);margin:6px 0 4px}
 .tm-dtx .tags-l{margin-bottom:22px}
 .tm-dtx .btn{margin-top:auto}
-@media (max-width:1100px){.tm-grid>li{width:calc(25% - 13.5px)}}
-@media (max-width:1000px){.tm-grid>li{width:calc(33.333% - 12px)}}
-@media (max-width:760px){.tm-grid{max-width:560px}.tm-grid>li{width:calc(50% - 9px)}}
+@media (max-width:1000px){.tm-grid{max-width:600px}.tm-grid>li{width:calc(50% - 10px)}}
 @media (max-width:720px){
   .team-sec{padding:8px 0 56px}
   .tm-grid{gap:12px}
-  .tm-grid>li{width:calc(50% - 6px)}
   .tm-card{border-radius:20px;padding:8px 8px 14px}
   .tm-ph{border-radius:14px}
   .tm-info{padding:12px 4px 0}
@@ -793,7 +790,8 @@ section.first,article.first{padding-top:var(--hero-top)}
   .tm-dtx{padding:26px 22px 26px}
   .tm-dlg{border-radius:22px}
 }
-@media (max-width:330px){.tm-grid>li{width:100%}}
+@media (max-width:520px){.tm-grid{max-width:340px}.tm-grid>li{width:100%}}
+.nf .nf-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 @media (prefers-reduced-motion:reduce){.tm-dlg[open],.tm-dlg[open]::backdrop{animation:none}}
 
 /* ---------- Header: Segmented Capsule ---------- */

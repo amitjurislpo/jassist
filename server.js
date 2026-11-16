@@ -29,7 +29,13 @@ http.createServer((req, res) => {
   // Clean URLs: /services -> services.html
   if (!path.extname(file)) file += '.html';
   fs.readFile(file, (err, data) => {
-    if (err) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }); return res.end('404 Not Found'); }
+    if (err) {
+      // Unknown URL: send the branded 404 page with a real 404 status.
+      return fs.readFile(path.join(ROOT, '404.html'), (e2, page) => {
+        res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8', 'X-Robots-Tag': 'noindex' });
+        res.end(e2 ? '404 Not Found' : page);
+      });
+    }
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream' });
     res.end(data);
   });
