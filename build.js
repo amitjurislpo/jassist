@@ -15,8 +15,14 @@ const SITE_URL = (process.env.SITE_URL || 'https://jurisassistme.com').replace(/
 const EMAIL = 'contact@jurisassistme.com';
 const PHONE_DISPLAY = '+1 (646) 233-8454';
 const PHONE_HREF = 'tel:+16462338454';
+// Business hours: change them here only. Used on the contact page, FAQs, meta descriptions and JSON-LD.
+const HOURS = 'Mon–Fri, 9 AM – 6 PM ET';
+// Home page client-logo strip. Keep false until real, approved client logos exist: while false, the strip
+// and its caption are not written to the HTML at all. To turn it on: set true, replace the placeholder
+// tiles filled by public/js/main.js (#lgTrack) with approved logos, and rebuild.
+const SHOW_CLIENT_LOGOS = false;
 const FAQ_COUNT = 6; // every page with an FAQ section shows exactly this many
-const EXTRA_FAQS = require('./src/faqs')({ EMAIL, PHONE: PHONE_DISPLAY });
+const EXTRA_FAQS = require('./src/faqs')({ EMAIL, PHONE: PHONE_DISPLAY, HOURS });
 
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const back = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
@@ -39,8 +45,9 @@ const STATIC = [
   { slug: 'why-jurisassistme', nav: 'why-jurisassistme', url: '/why-jurisassistme', title: 'Managed Virtual Assistants vs. Freelancers | JurisAssistMe', desc: 'JurisAssistMe is not a freelancer marketplace. We match, manage and support dedicated virtual professionals who work as part of your team.' },
   { slug: 'industries', nav: 'industries', url: '/industries', title: 'Virtual Assistants for Law Firms, Real Estate & More', desc: 'Virtual assistant support for law firms, real estate, accounting and CPA firms, e-commerce, professional services, startups and small businesses.' },
   { slug: 'about', nav: 'about', url: '/about', title: 'About JurisAssistMe | Virtual Business Support Company', desc: 'JurisAssistMe helps U.S. businesses access reliable, skilled virtual professionals without the complexity of traditional hiring.' },
-  { slug: 'resources', nav: 'resources', url: '/resources', title: 'Resources: Guides & Case Studies | JurisAssistMe', desc: 'Guides on hiring and working with virtual assistants, plus upcoming case studies from JurisAssistMe.' },
-  { slug: 'contact', nav: null, url: '/contact', title: 'Contact JurisAssistMe | Hire a Virtual Assistant Team', desc: `Email ${EMAIL} or call ${PHONE_DISPLAY} to build your virtual assistant team with JurisAssistMe.` },
+  { slug: 'resources', nav: 'resources', url: '/resources', title: 'Resources: Guides & Blog Articles | JurisAssistMe', desc: 'Guides and blog articles on hiring and working with virtual assistants, from JurisAssistMe.' },
+  { slug: 'contact', nav: null, url: '/contact', title: 'Contact JurisAssistMe | Hire a Virtual Assistant Team', desc: `Email ${EMAIL} or call ${PHONE_DISPLAY} (${HOURS}) to build your virtual assistant team with JurisAssistMe.` },
+  { slug: '404', nav: null, noindex: true, notFound: true, url: '/404', title: 'Page not found | JurisAssistMe', desc: 'The page you are looking for could not be found.' },
   { slug: 'privacy-policy', nav: null, noindex: true, url: '/privacy-policy', title: 'Privacy Policy | JurisAssistMe', desc: 'JurisAssistMe privacy policy.' },
   { slug: 'terms-of-service', nav: null, noindex: true, url: '/terms-of-service', title: 'Terms of Service | JurisAssistMe', desc: 'JurisAssistMe terms of service.' }
 ];
@@ -92,7 +99,7 @@ const social = `<div class="soc">
         <a href="/contact" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8.5V6.7c0-.8.2-1.2 1.4-1.2H17V2.3c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.5v3.4h2.8v9.9H14v-9.9h2.8l.4-3.4z"/></svg></a>
       </div>`;
 
-const DISCLAIMER = 'JurisAssistMe provides virtual business support and is not a law, CPA or financial advisory firm. Website content is general information, not professional advice, and profiles, statistics and logos shown are illustrative.';
+const DISCLAIMER = 'JurisAssistMe provides virtual business support and is not a law, CPA or financial advisory firm. Website content is general information, not professional advice, and statistics shown are illustrative.';
 
 const svcLinks = SERVICES.map(s => `<li><a href="/services/${s.slug}">${esc(s.name)}</a></li>`).join('');
 
@@ -106,7 +113,7 @@ function footer() {
       </div>
       <div><h4>Company</h4><ul><li><a href="/about">About</a></li><li><a href="/why-jurisassistme">Why JurisAssistMe</a></li><li><a href="/solutions">How It Works</a></li><li><a href="/contact">Contact</a></li></ul></div>
       <div class="f-svc"><h4>Services</h4><ul>${svcLinks}</ul></div>
-      <div><h4>Resources</h4><ul><li><a href="/blog">Blog</a></li><li><a href="/resources#case-studies">Case Studies</a></li></ul></div>
+      <div><h4>Resources</h4><ul><li><a href="/blog">Blog</a></li></ul></div>
     </div>
     <div class="f-bot">
       <span>© 2026 JurisAssistMe. All Rights Reserved.</span>
@@ -120,6 +127,7 @@ function footer() {
 
 function faqSection(faqs) {
   if (!faqs || !faqs.length) return { html: '', ld: '' };
+  faqs = faqs.map(([q, a]) => [q, a.replace(/\{\{hours\}\}/g, HOURS)]);
   const html = `<!-- ============ FAQ ============ -->
 <section class="faqs" aria-labelledby="fq-h">
   <div class="wrap">
@@ -194,7 +202,7 @@ function breadcrumbLd(page) {
   return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items })}</script>`;
 }
 const PHONE_E164 = '+1-646-233-8454';
-const orgLd = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'JurisAssistMe', alternateName: 'Your Trusted Virtual Assistance Partner', logo: SITE_URL + '/logo.svg', description: 'Virtual business support and dedicated remote teams for U.S. businesses.', email: EMAIL, telephone: PHONE_E164, ...(SITE_URL ? { url: SITE_URL } : {}), contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: EMAIL, telephone: PHONE_E164, areaServed: 'US', availableLanguage: 'English' } })}</script>`;
+const orgLd = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'JurisAssistMe', alternateName: 'Your Trusted Virtual Assistance Partner', logo: SITE_URL + '/logo.svg', description: 'Virtual business support and dedicated remote teams for U.S. businesses.', email: EMAIL, telephone: PHONE_E164, ...(SITE_URL ? { url: SITE_URL } : {}), contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: EMAIL, telephone: PHONE_E164, areaServed: 'US', availableLanguage: 'English', hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' }, description: HOURS } })}</script>`;
 
 const FAVICON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#D8C08A"/><text x="16" y="23" font-family="Georgia,serif" font-size="20" font-weight="700" text-anchor="middle" fill="#111">J</text></svg>');
 
@@ -207,7 +215,7 @@ function render(page, body) {
 
   // FAQ goes just before the closing CTA (or at the end when the page has none).
   if (faq.html) body = body.includes(CTA_MARK) ? body.replace(CTA_MARK, faq.html + '\n' + CTA_MARK) : body + '\n' + faq.html;
-  const canon = SITE_URL ? `\n<link rel="canonical" href="${SITE_URL}${page.url}">` : '';
+  const canon = SITE_URL && !page.notFound ? `\n<link rel="canonical" href="${SITE_URL}${page.url}">` : '';
   const noindex = page.noindex ? '\n<meta name="robots" content="noindex">' : '';
   const ld = [page.slug === 'index' ? orgLd : '', faq.ld, page.ld, breadcrumbLd(page)].filter(Boolean).join('\n');
   return `<!doctype html>
@@ -246,6 +254,9 @@ ${footer()}
 `;
 }
 
+const LOGOS_HTML = `<div class="logos" aria-hidden="true"><div class="lg-track" id="lgTrack"></div></div>
+  <p class="logos-cap">Client logos</p>`;
+
 function fill(s) {
   return s
     .replace(/\{\{team\}\}/g, () => teamSection())
@@ -254,7 +265,9 @@ function fill(s) {
     .replace(/\{\{check\}\}/g, check)
     .replace(/\{\{email\}\}/g, EMAIL)
     .replace(/\{\{phone\}\}/g, PHONE_DISPLAY)
-    .replace(/\{\{phonehref\}\}/g, PHONE_HREF);
+    .replace(/\{\{phonehref\}\}/g, PHONE_HREF)
+    .replace(/\{\{hours\}\}/g, HOURS)
+    .replace(/\{\{logos\}\}/g, SHOW_CLIENT_LOGOS ? LOGOS_HTML : '');
 }
 
 // ---- Shared page pieces ----
@@ -371,7 +384,7 @@ ${ctaBlock}`;
 // ---- Our Team (about page): cards open a popup with the person's details ----
 function teamSection() {
   const photo = m => '/images/team/' + m.photo;
-  const alt = m => `Sample photo of ${m.name}, ${m.role}`;
+  const alt = m => `${m.name}, ${m.role}, JurisAssistMe`;
   const data = TEAM.map(m => ({ name: m.name, role: m.role, photo: photo(m), alt: alt(m), bio: m.bio, focus: m.focus }));
   return `<section class="team-sec" id="our-team" aria-labelledby="tm-h">
   <div class="wrap">
@@ -504,7 +517,7 @@ ${html}
 }
 
 // ---- Assemble ----
-const pages = STATIC.map(p => ({ ...p, crumbs: p.slug === 'index' ? null : [[CRUMB[p.slug] || p.slug, p.url]], faqs: PAGE_FAQS[p.slug], body: fs.readFileSync(path.join(SRC, p.slug + '.html'), 'utf8') }));
+const pages = STATIC.map(p => ({ ...p, crumbs: p.slug === 'index' || p.notFound ? null : [[CRUMB[p.slug] || p.slug, p.url]], faqs: PAGE_FAQS[p.slug], body: fs.readFileSync(path.join(SRC, p.slug + '.html'), 'utf8') }));
 SERVICES.forEach((s, i) => pages.push(servicePage(s, i)));
 INDUSTRY_SEO.forEach((d, i) => pages.push(industryPage(d, i)));
 pages.push(blogIndex());
