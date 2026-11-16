@@ -535,5 +535,13 @@ if (SITE_URL) {
   const urls = pages.filter(p => !p.noindex).map(p => `  <url><loc>${SITE_URL}${p.url}</loc></url>`).join(NL);
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', urls, '</urlset>', ''].join(NL));
 }
-fs.writeFileSync(path.join(OUT, 'robots.txt'), ['User-agent: *', 'Allow: /', ...(SITE_URL ? [`Sitemap: ${SITE_URL}/sitemap.xml`] : []), ''].join(NL));
+// robots.txt: everything is crawlable. AI search / answer-engine crawlers are listed explicitly (instead of relying on
+// the "*" rule) so a future edit cannot silently block JurisAssistMe from AI search results. Add or remove bots here.
+const AI_BOTS = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended'];
+fs.writeFileSync(path.join(OUT, 'robots.txt'), [
+  'User-agent: *', 'Disallow:', 'Allow: /', '',
+  '# AI search and answer-engine crawlers, allowed explicitly so JurisAssistMe can be found and cited in AI answers.',
+  ...AI_BOTS.flatMap(b => [`User-agent: ${b}`, 'Allow: /', '']),
+  ...(SITE_URL ? [`Sitemap: ${SITE_URL}/sitemap.xml`] : []), ''
+].join(NL));
 console.log(`Built ${pages.length} pages`);
