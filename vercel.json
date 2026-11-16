@@ -1,8 +1,16 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/why-j-assist", "destination": "/why-jurisassistme", "permanent": true },
+    { "source": "/services/sales-lead-generation", "destination": "/services", "permanent": true },
+    { "source": "/services/real-estate-support", "destination": "/industries/real-estate", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "(.*)\.vercel\.app" }],
+      "has": [{ "type": "host", "value": "jassist.vercel.app" }],
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
