@@ -3,3 +3,25 @@
 Your Trusted Virtual Assistance Partner. Static marketing site for jurisassistme.com.
 
     npm start   # builds to public/ and serves on http://localhost:3006
+
+## Build-time settings (`build.js`)
+
+- `SHOW_CLIENT_LOGOS` (default `false`): the home-page client-logo strip and its caption are **not written to the HTML** while this is `false`. To turn them on, set it to `true`, replace the placeholder tiles that `public/js/main.js` fills into `#lgTrack` with approved logos, then rebuild. `main.js` is safe when `#lgTrack` is absent.
+- `HOURS` (default `Mon–Fri, 9 AM – 6 PM ET`): the single source for business hours. It feeds the contact card, FAQs, the contact meta description and the Organization JSON-LD. Change it there only.
+- Other contact constants: `EMAIL`, `PHONE_DISPLAY`, `PHONE_HREF` (the phone stays a `tel:` link).
+
+## Team section
+
+Members live in `src/team.js`. Put photos in `public/images/team/` (keep the full-size original, and use a 4:5 copy of about 600×750, under 150KB, named `<name>-600.jpg`). Bios are drafts until confirmed.
+
+## 404 page
+
+`build.js` generates `public/404.html` (noindex, not in `sitemap.xml`, no FAQ). `server.js` returns it with HTTP 404 for unknown URLs.
+
+- Vercel serves `404.html` from the output folder automatically.
+- nginx: `error_page 404 /404.html;` (and `location = /404.html { internal; }`).
+- Apache: `ErrorDocument 404 /404.html`.
+
+## Keeping the Vercel preview out of search engines
+
+`vercel.json` adds `X-Robots-Tag: noindex, nofollow` only when the host matches `*.vercel.app`, so jurisassistme.com stays indexable. It sets no build command or output directory, so the dashboard settings are not overridden. Pages carry no `noindex` meta tag (except privacy, terms and 404), and production `robots.txt` is unchanged.

@@ -2,7 +2,7 @@
 // build.js appends these to the FAQs already defined in data.js / seo.js.
 // Keep claims to what the site already states: no statistics, guarantees, named clients or invented credentials.
 
-const base = ({ EMAIL, PHONE }) => ({
+const base = ({ EMAIL, PHONE, HOURS }) => ({
   // ---------- top-level pages ----------
   index: [
     ['What services does JurisAssistMe offer?', 'Eight specialties: virtual executive assistant, administrative support, social media management, website development, content creation, SEO management, graphic design, and bookkeeping and accounting support.'],
@@ -52,7 +52,7 @@ const base = ({ EMAIL, PHONE }) => ({
   ],
   contact: [
     ['How do I contact JurisAssistMe?', `Email ${EMAIL} or call ${PHONE}.`],
-    ['How soon will I hear back?', 'We aim to respond promptly during our phone hours, Monday to Friday, 9 AM to 6 PM.'],
+    ['How soon will I hear back?', `We aim to respond promptly during our phone hours: ${HOURS}.`],
     ['Do I have to commit when I get in touch?', 'No. Contacting us is a conversation about what you need. You interview the selected professional before moving forward.'],
     ['What will you ask me during the first conversation?', 'About your tasks and responsibilities, preferred working hours, time zone and the tools your team uses.'],
     ['Can I ask about pricing?', 'Yes. Pricing is confirmed per engagement based on the scope, role and hours you need, and we will recommend a structure and quote.'],
@@ -68,9 +68,9 @@ const base = ({ EMAIL, PHONE }) => ({
     ['Where can I learn about your services?', 'See our services page for all eight specialties, or contact us to talk through what you need.']
   ],
   resources: [
-    ['What is on the Resources page?', 'Guides and insights on hiring and working with virtual assistants, plus case studies that will be published once approved.'],
+    ['Can I suggest a topic for a guide or article?', 'Yes. Contact us with the topic you would like us to cover.'],
     ['Where can I read your articles?', 'On the JurisAssistMe blog, which includes a step-by-step guide to hiring a virtual assistant.'],
-    ['Are case studies available yet?', 'Not yet. They are coming soon and will be published once approved.'],
+    ['Which guide should I read first?', 'If you are new to virtual assistants, start with our step-by-step guide to hiring one on the blog.'],
     ['Are the resources free to read?', 'Yes. Our articles are free to read on the site.'],
     ['Is the information on this site professional advice?', 'No. It is general information. JurisAssistMe is not a law, CPA or financial advisory firm.'],
     ['How can I talk to someone about my needs?', 'Use the contact page to email or call us and we will recommend a team structure for your business.']
