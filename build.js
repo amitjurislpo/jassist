@@ -19,6 +19,7 @@ const PHONE_DISPLAY = '+1 (646) 233-8454';
 const PHONE_HREF = 'tel:+16462338454';
 // Business hours: change them here only. Used on the contact page, FAQs, meta descriptions and JSON-LD.
 const HOURS = 'Mon–Fri, 9 AM – 6 PM ET';
+const HOURS_ET = 'Mon–Fri, 9 AM – 6 PM Eastern Time (ET)'; // JSON-LD only; visible text keeps HOURS
 // Home page client-logo strip. Keep false until real, approved client logos exist: while false, the strip
 // and its caption are not written to the HTML at all. To turn it on: set true, replace the placeholder
 // tiles filled by public/js/main.js (#lgTrack) with approved logos, and rebuild.
@@ -204,7 +205,7 @@ function breadcrumbLd(page) {
   return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items })}</script>`;
 }
 const PHONE_E164 = '+1-646-233-8454';
-const orgLd = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'JurisAssistMe', alternateName: 'Your Trusted Virtual Assistance Partner', logo: SITE_URL + '/logo.svg', description: 'Virtual business support and dedicated remote teams for U.S. businesses.', email: EMAIL, telephone: PHONE_E164, ...(SITE_URL ? { url: SITE_URL } : {}), contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: EMAIL, telephone: PHONE_E164, areaServed: 'US', availableLanguage: 'English', hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' }, description: HOURS } })}</script>`;
+const orgLd = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'JurisAssistMe', alternateName: 'Your Trusted Virtual Assistance Partner', logo: SITE_URL + '/logo.svg', description: 'Virtual business support and dedicated remote teams for U.S. businesses.', email: EMAIL, telephone: PHONE_E164, ...(SITE_URL ? { url: SITE_URL } : {}), contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: EMAIL, telephone: PHONE_E164, areaServed: 'US', availableLanguage: 'English', hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' }, description: HOURS_ET } })}</script>`;
 
 const FAVICON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#D8C08A"/><text x="16" y="23" font-family="Georgia,serif" font-size="20" font-weight="700" text-anchor="middle" fill="#111">J</text></svg>');
 
@@ -546,7 +547,8 @@ for (const p of pages) fs.writeFileSync(path.join(OUT, p.slug + '.html'), render
 
 const NL = '\n';
 if (SITE_URL) {
-  const urls = pages.filter(p => !p.noindex).map(p => `  <url><loc>${SITE_URL}${p.url}</loc></url>`).join(NL);
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const urls = pages.filter(p => !p.noindex).map(p => `  <url><loc>${SITE_URL}${p.url}</loc><lastmod>${lastmod}</lastmod></url>`).join(NL);
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', urls, '</urlset>', ''].join(NL));
 }
 // robots.txt: everything is crawlable. AI search / answer-engine crawlers are listed explicitly (instead of relying on
