@@ -3,7 +3,7 @@
 Use this when the user says "read the blog instruction file and add this blog" and gives a **PDF** (content + SEO metadata) and an **image**.
 A new post means exactly two things: **(1)** a new entry in `src/blogs.js` (this generates the post page **and** the card on the `/blog` hub), **(2)** the image file. Do not redesign the hub or post layout.
 
-The site is a static build: `src/*.js` + `build.js` write HTML into `public/`. Run `npm run build`, then `npm start` (http://localhost:3006).
+Built-in posts live in `src/blogs.js` and are rendered by `site/render.js` (the same templates the Sanity posts use). Run `npm run dev` (http://localhost:3006). Posts written in Sanity Studio do not use this file: see README "How a blog post goes live".
 
 ## Hard rules
 
@@ -39,7 +39,7 @@ Copy the shape of the existing entry (`how-to-hire-a-virtual-assistant` is the w
 | `excerpt` | PDF excerpt (used on the card and as the post's intro line) |
 | `image` | `{ file, alt, width, height }` |
 | `html` | the whole body (rules below). **Not** the FAQ |
-| `faqs` | `[[question, answer], ...]` from the PDF. Plain text answers. **Exactly 6** (build.js caps at 6): if the PDF has more, keep the 6 most useful and tell the user; if fewer, ask the user or add strictly on-topic ones (real search questions, no invented facts). Never put FAQ content in `html` |
+| `faqs` | `[[question, answer], ...]` from the PDF. Plain text answers. **Exactly 6** (site/render.js caps built-in posts at 6): if the PDF has more, keep the 6 most useful and tell the user; if fewer, ask the user or add strictly on-topic ones (real search questions, no invented facts). Never put FAQ content in `html` |
 
 What the build produces automatically (do not hand-write any of this):
 - hero: **"Back to Blog" button**, breadcrumb, tag, H1, excerpt (H1 and excerpt run the full content width), byline, date, read time, and **share icons** (Facebook, X, Pinterest, LinkedIn, WhatsApp, email)

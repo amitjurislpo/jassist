@@ -1,0 +1,4 @@
+// Public Sanity settings (safe for the browser). Tokens are server-only: lib/config/env.ts.
+export const sanityProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
+export const sanityDataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+export const sanityApiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2025-02-19";

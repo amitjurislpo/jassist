@@ -1,0 +1,12 @@
+[
+  {
+    "name": "0001_approval.sql",
+    "sql": "-- Blog approval (the CTO's JurisAssist blog work order of 17 Nov 2026).\n-- The latest decision per document, tied to the Sanity revision it was made at,\n-- plus an append-only audit of every transition.\n\ncreate table approval (\n  object_type text not null,\n  object_id   text not null,\n  title       text not null default '',\n  revision    text not null,\n  state       text not null check (state in ('approved', 'rejected')),\n  decided_by  text not null check (decided_by = lower(decided_by)),\n  decided_at  timestamptz not null default now(),\n  reason      text,\n  primary key (object_type, object_id)\n);\ncreate index approval_state_idx on approval (state);\n\ncreate table approval_audit (\n  id          bigint generated always as identity primary key,\n  object_type text not null,\n  object_id   text not null,\n  revision    text not null,\n  from_state  text not null,\n  to_state    text not null,\n  actor       text not null check (actor = lower(actor)),\n  at          timestamptz not null default now(),\n  reason      text\n);\ncreate index approval_audit_object_idx on approval_audit (object_type, object_id, at);\n\ncreate function approval_audit_append_only() returns trigger language plpgsql as $$\nbegin\n  raise exception 'approval_audit is append-only: % is not allowed', tg_op;\nend $$;\n\ncreate trigger approval_audit_no_update_delete\n  before update or delete on approval_audit\n  for each row execute function approval_audit_append_only();\n\ncreate trigger approval_audit_no_truncate\n  before truncate on approval_audit\n  for each statement execute function approval_audit_append_only();\n\n-- Checkers: admins of this site who may approve. Changed by adding or deleting a row.\ncreate table blog_checker (\n  email      text primary key check (email = lower(email) and email = btrim(email) and email <> ''),\n  note       text,\n  created_at timestamptz not null default now()\n);\n",
+    "checksum": "45cc1d5daaf41261bbb436307efbcda6acd805c439f81116cc9e96000755ff7d"
+  },
+  {
+    "name": "0002_seed_checkers.sql",
+    "sql": "-- The first checkers, as given in the CTO's JurisAssist blog work order of 17 Nov 2026. Safe to run twice.\ninsert into blog_checker (email, note) values\n  ('gopal@jurislpo.com', 'Work order 17 Nov 2026'),\n  ('ritz@jurislpo.com',  'Work order 17 Nov 2026'),\n  ('amit@jurislpo.com',  'Work order 17 Nov 2026')\non conflict (email) do nothing;\n",
+    "checksum": "d00cd5f18ccc41ca2aa752fd4c5422bb5d842fc2bce12b73327fd050e7e9478f"
+  }
+]

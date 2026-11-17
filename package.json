@@ -2,9 +2,46 @@
   "name": "jurisassistme-website",
   "version": "1.0.0",
   "private": true,
-  "description": "JurisAssistMe — static marketing website",
+  "description": "JurisAssistMe: marketing website, with a blog written in Sanity Studio and published only after a checker approves it",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "build": "node build.js",
-    "start": "node build.js && node server.js"
+    "dev": "node build.js && next dev -p 3006",
+    "start": "node build.js && next build && next start -p 3006",
+    "vercel-build": "node build.js && node scripts/vercel-build.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm run lint && npm run test && node build.js && next build",
+    "db:migrate": "node scripts/migrate.mjs",
+    "datalink:build": "node datalink/build.mjs",
+    "sanity:setup": "node scripts/setup-sanity.mjs"
+  },
+  "dependencies": {
+    "@portabletext/to-html": "5.0.3",
+    "@sanity/client": "8.15.1",
+    "@sanity/table": "3.1.20",
+    "jose": "6.2.17",
+    "next": "16.4.6",
+    "next-sanity": "13.4.0",
+    "pg": "8.23.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "sanity": "6.22.0",
+    "server-only": "0.0.1",
+    "styled-components": "6.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "esbuild": "0.28.2",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
   }
 }
