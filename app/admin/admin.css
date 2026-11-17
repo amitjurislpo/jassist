@@ -1,0 +1,25 @@
+/* The admin area (review page). Plain and readable; never indexed, no analytics. */
+.adm-shell{min-height:100vh;background:#151A20;color:#EEF1F4;font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.adm-shell a{color:#D8C08A}
+.adm-bar{border-bottom:1px solid rgba(238,241,244,.12)}
+.adm-bar-in,.adm{max-width:1240px;margin:0 auto;padding:14px clamp(16px,4vw,40px)}
+.adm-bar-in{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+.adm{display:flex;flex-direction:column;gap:24px;padding-top:32px;padding-bottom:64px}
+.adm h1{margin:0;font-size:32px;line-height:1.2}
+.adm h2{margin:0;font-size:22px}
+.adm-col{display:flex;flex-direction:column;gap:12px}
+.adm-dim{margin:0;color:#A9B3BE;font-size:14px}
+.adm table{width:100%;border-collapse:collapse;font-size:15px}
+.adm th,.adm td{text-align:left;padding:8px 10px;border-bottom:1px solid rgba(238,241,244,.1);vertical-align:top;overflow-wrap:anywhere}
+.adm-note{margin:0;padding:12px 14px;border-radius:8px;background:rgba(216,192,138,.1);border:1px solid rgba(216,192,138,.35)}
+.adm-note.warn{background:rgba(255,120,100,.1);border-color:rgba(255,120,100,.5)}
+.adm-note.ok{background:rgba(120,220,150,.1);border-color:rgba(120,220,150,.5)}
+.adm-warn{color:#FF9C8A}
+.adm-tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:.04em;background:rgba(216,192,138,.18);color:#D8C08A}
+.adm-tag.del{background:rgba(255,120,100,.18);color:#FF9C8A}
+.adm-btn{font:inherit;cursor:pointer;padding:9px 16px;border-radius:8px;border:1px solid rgba(238,241,244,.3);background:transparent;color:#EEF1F4}
+.adm-btn.primary{background:#D8C08A;color:#111;border-color:#D8C08A;font-weight:700}
+.adm-btn.danger{border-color:#FF9C8A;color:#FF9C8A}
+.adm-btn:disabled{opacity:.6;cursor:wait}
+.adm-in{font:inherit;padding:10px;border-radius:8px;border:1px solid rgba(238,241,244,.3);background:#0F1318;color:#EEF1F4}
+.adm-skip{position:absolute;left:-9999px}.adm-skip:focus{left:16px;top:8px;background:#D8C08A;color:#111;padding:6px 10px}

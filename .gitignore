@@ -1,2 +1,14 @@
 node_modules/
 server.log
+.next/
+.env*
+!.env.example
+dist/
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+.claude/
+
+# Terraform working files
+.terraform/
+*.tfplan
