@@ -17,6 +17,7 @@ const TYPES = {
   '.webp': 'image/webp',
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
+  '.xml': 'application/xml; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8'
 };
 
@@ -29,9 +30,20 @@ const REDIRECTS = {
 
 http.createServer((req, res) => {
   const [rawPath, ...q] = req.url.split('?');
+  const qs = q.length ? '?' + q.join('?') : '';
+  // Match Vercel: strip trailing slash and .html with a single 301 hop, keeping the query string.
+  let clean = rawPath;
+  if (clean.length > 1 && clean.endsWith('/')) clean = clean.replace(/\/+$/, '') || '/';
+  if (clean === '/index.html') clean = '/';
+  else if (clean.endsWith('.html')) clean = clean.slice(0, -5);
+  if (clean.endsWith('/index')) clean = clean.slice(0, -6) || '/';
+  if (clean !== rawPath) {
+    res.writeHead(301, { Location: (REDIRECTS[clean] || clean) + qs });
+    return res.end();
+  }
   const rp = rawPath.length > 1 ? rawPath.replace(/\/$/, '') : rawPath;
   if (REDIRECTS[rp]) {
-    res.writeHead(301, { Location: REDIRECTS[rp] + (q.length ? '?' + q.join('?') : '') });
+    res.writeHead(301, { Location: REDIRECTS[rp] + qs });
     return res.end();
   }
   let urlPath;
