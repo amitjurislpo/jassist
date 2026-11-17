@@ -12,3 +12,6 @@ next-env.d.ts
 # Terraform working files
 .terraform/
 *.tfplan
+
+# Python caches
+__pycache__/
