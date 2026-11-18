@@ -8,13 +8,15 @@
 
   function size() {
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    w = box.clientWidth; h = box.clientHeight;
-    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    // Floor to whole device pixels so the bitmap is never wider than the element (fractional widths at e.g. 150% scaling).
+    const r = box.getBoundingClientRect();
+    cv.width = Math.max(1, Math.floor(r.width * dpr)); cv.height = Math.max(1, Math.floor(r.height * dpr));
+    w = cv.width / dpr; h = cv.height / dpr;
     x.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
   function draw(t) {
-    x.clearRect(0, 0, w, h);
+    x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.clearRect(0, 0, cv.width, cv.height); x.restore(); // clear the whole bitmap, not just w x h
     const mobile = w < 720;
     const cols = mobile ? 150 : 300, rows = mobile ? 56 : 84;
     const f = w * 0.55, camH = 120, hz = h * (mobile ? 0.55 : 0.48);
