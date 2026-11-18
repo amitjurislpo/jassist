@@ -140,3 +140,11 @@ html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all svg{color:#111}
 html[data-theme="slate-dark"] .fx-panel{background:radial-gradient(90% 70% at 100% 0%,rgba(196,160,106,.2) 0%,transparent 60%),radial-gradient(80% 80% at 0% 100%,rgba(196,160,106,.1) 0%,transparent 60%),linear-gradient(160deg,#1E252D 0%,#161B21 55%,#10141A 100%)}
 html[data-theme="slate-dark"] .tm-x{background:rgba(26,32,39,.94)}
 html[data-theme="slate-dark"] input::placeholder,html[data-theme="slate-dark"] textarea::placeholder{color:#7B8794}
+/* Services mega menu footer row: divider line, "View all services ->" on the left, service count on the right */
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all,html[data-theme="slate-dark"] body.hero-dark .hdr:not(.scrolled) .nav.seg .dd-mega .dd-in .dd-all{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;width:auto;margin:6px 0 0;padding:14px 12px 8px;border:0;border-top:1px solid var(--line-2);border-radius:0 0 10px 10px;background:transparent;box-shadow:none;color:var(--gold-text);font-weight:600;font-size:14px}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:hover,html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:focus-visible{background:transparent;color:var(--gold-hi)}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all .dd-l{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:2px;transition:background-size .35s var(--ease)}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:hover .dd-l,html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:focus-visible .dd-l{background-size:calc(100% - 22px) 1px}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all svg{width:14px;height:14px;padding:0;background:none;color:currentColor;transition:transform .3s var(--ease)}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:hover svg{transform:translateX(4px)}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all .dd-n{font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--muted);padding:3px 10px;border:1px solid var(--line-2);border-radius:999px}
