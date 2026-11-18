@@ -72,7 +72,7 @@ function header(active) {
   const dropdown = n => {
     const mega = n[0] === 'services';
     const items = menus[n[0]].map(([h, t, ini]) => `<a href="${h}">${mega ? `<span class="bdg" aria-hidden="true">${ini}</span>` : ''}<span>${esc(t)}</span></a>`).join('');
-    return `<div class="dd${mega ? ' dd-mega' : ''}">${link(n).replace('<a ', '<a aria-haspopup="true" ')}<div class="dd-menu"><div class="dd-in">${items}<a href="${n[1]}" class="dd-all"><span>View all ${n[2].toLowerCase()}</span>${arrow}</a></div></div></div>`;
+    return `<div class="dd${mega ? ' dd-mega' : ''}">${link(n).replace('<a ', '<a aria-haspopup="true" ')}<div class="dd-menu"><div class="dd-in">${items}<a href="${n[1]}" class="dd-all">${mega ? `<span class="dd-l">View all ${n[2].toLowerCase()}${arrow}</span><span class="dd-n">${menus[n[0]].length} services</span>` : `<span>View all ${n[2].toLowerCase()}</span>${arrow}`}</a></div></div></div>`;
   };
   const navDesktop = NAV.map(n => menus[n[0]] ? dropdown(n) : link(n)).join('');
   return `<a class="skip" href="#main">Skip to content</a>
