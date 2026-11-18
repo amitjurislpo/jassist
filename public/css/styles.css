@@ -862,3 +862,15 @@ body.hero-dark .hdr.mid:not(.scrolled){background:rgba(11,11,11,.74);backdrop-fi
 .hc-cards-sec .hc-roles{margin-top:0}
 .hc-cards-sec .hc-cards{margin-top:36px}
 @media (max-width:720px){.hc-cards-sec{padding:40px 0 0}}
+
+/* ---------- Floating call button (right edge, vertically centred; bottom-right on phones) ---------- */
+.fcb{position:fixed;z-index:90;right:16px;bottom:max(20px,env(safe-area-inset-bottom));width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:var(--gold);background:rgba(var(--paper-rgb),.8);border:1px solid rgba(var(--acc-rgb),.45);box-shadow:0 18px 40px -16px rgba(0,0,0,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .3s var(--ease),border-color .3s,background-color .3s,box-shadow .3s}
+.fcb::before{content:"";position:absolute;inset:-1px;border-radius:inherit;border:1px solid var(--gold);opacity:0;pointer-events:none;animation:fcb-ring 2.8s var(--ease) infinite}
+.fcb svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease)}
+.fcb:hover,.fcb:focus-visible{transform:scale(1.06);border-color:var(--gold);background:var(--surface);box-shadow:0 22px 44px -14px rgba(var(--acc-rgb),.4)}
+.fcb:hover svg,.fcb:focus-visible svg{transform:rotate(-12deg)}
+.fcb:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.fcb:active{transform:scale(.97)}
+@keyframes fcb-ring{0%{transform:scale(1);opacity:.8}70%,100%{transform:scale(1.8);opacity:0}}
+@media (min-width:768px){.fcb{right:24px;bottom:auto;top:50%;width:56px;height:56px;margin-top:-28px}.fcb svg{width:22px;height:22px}}
+@media (prefers-reduced-motion:reduce){.fcb::before{display:none}.fcb,.fcb svg{transition:none}}

@@ -104,6 +104,14 @@ const DISCLAIMER = 'JurisAssistMe provides virtual business support and is not a
 
 const svcLinks = SERVICES.map(s => `<li><a href="/services/${s.slug}">${esc(s.name)}</a></li>`).join('');
 
+// Floating call button, fixed to the right edge. On /contact that page is already the destination, so it dials directly.
+function floatingCall(slug) {
+  if (slug === '404') return '';
+  const onContact = slug === 'contact';
+  const label = onContact ? `Call us at ${PHONE_DISPLAY}` : 'Contact us';
+  return `<a class="fcb" href="${onContact ? PHONE_HREF : '/contact'}" aria-label="${label}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></a>`;
+}
+
 function footer() {
   return `<footer class="ftr">
   <div class="wrap">
@@ -266,6 +274,7 @@ ${body}
 
 ${footer()}
 
+${floatingCall(page.slug)}
 <script src="/js/main.js"></script>${(page.scripts || []).map(s => `\n<script src="${s}" defer></script>`).join('')}
 </body>
 </html>
