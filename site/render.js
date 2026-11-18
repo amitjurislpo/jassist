@@ -12,7 +12,7 @@ const SRC = path.join(__dirname, '..', 'src', 'page-html');
 // sitemap.xml, robots.txt and JSON-LD all use www. If the primary domain ever changes, change it here too.
 const SITE_URL = (process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jurisassistme.com').replace(/\/$/, '');
 
-const EMAIL = 'contact@jurisassistme.com';
+const EMAIL = 'contact@jurislpo.com';
 const PHONE_DISPLAY = '+1 (646) 233-8454';
 const PHONE_HREF = 'tel:+16462338454';
 // Business hours: change them here only. Used on the contact page, FAQs, meta descriptions and JSON-LD.
@@ -72,7 +72,7 @@ function header(active) {
   const dropdown = n => {
     const mega = n[0] === 'services';
     const items = menus[n[0]].map(([h, t, ini]) => `<a href="${h}">${mega ? `<span class="bdg" aria-hidden="true">${ini}</span>` : ''}<span>${esc(t)}</span></a>`).join('');
-    return `<div class="dd${mega ? ' dd-mega' : ''}">${link(n).replace('<a ', '<a aria-haspopup="true" ')}<div class="dd-menu"><div class="dd-in">${items}<a href="${n[1]}" class="dd-all"><span>View all ${n[2].toLowerCase()}</span>${arrow}</a></div></div></div>`;
+    return `<div class="dd${mega ? ' dd-mega' : ''}">${link(n).replace('<a ', '<a aria-haspopup="true" ')}<div class="dd-menu"><div class="dd-in">${items}<a href="${n[1]}" class="dd-all">${mega ? `<span class="dd-l">View all ${n[2].toLowerCase()}${arrow}</span><span class="dd-n">${menus[n[0]].length} services</span>` : `<span>View all ${n[2].toLowerCase()}</span>${arrow}`}</a></div></div></div>`;
   };
   const navDesktop = NAV.map(n => menus[n[0]] ? dropdown(n) : link(n)).join('');
   return `<a class="skip" href="#main">Skip to content</a>
@@ -103,6 +103,14 @@ const social = `<div class="soc">
 const DISCLAIMER = 'JurisAssistMe provides virtual business support and is not a law, CPA or financial advisory firm. Website content is general information, not professional advice, and statistics shown are illustrative.';
 
 const svcLinks = SERVICES.map(s => `<li><a href="/services/${s.slug}">${esc(s.name)}</a></li>`).join('');
+
+// Floating call button, fixed to the right edge. On /contact that page is already the destination, so it dials directly.
+function floatingCall(slug) {
+  if (slug === '404') return '';
+  const onContact = slug === 'contact';
+  const label = onContact ? `Call us at ${PHONE_DISPLAY}` : 'Contact us';
+  return `<a class="fcb" href="${onContact ? PHONE_HREF : '/contact'}" aria-label="${label}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></a>`;
+}
 
 function footer() {
   return `<footer class="ftr">
@@ -266,6 +274,7 @@ ${body}
 
 ${footer()}
 
+${floatingCall(page.slug)}
 <script src="/js/main.js"></script>${(page.scripts || []).map(s => `\n<script src="${s}" defer></script>`).join('')}
 </body>
 </html>
