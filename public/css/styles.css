@@ -874,3 +874,15 @@ body.hero-dark .hdr.mid:not(.scrolled){background:rgba(11,11,11,.74);backdrop-fi
 @keyframes fcb-ring{0%{transform:scale(1);opacity:.8}70%,100%{transform:scale(1.8);opacity:0}}
 @media (min-width:768px){.fcb{right:24px;bottom:auto;top:50%;width:56px;height:56px;margin-top:-28px}.fcb svg{width:22px;height:22px}}
 @media (prefers-reduced-motion:reduce){.fcb::before{display:none}.fcb,.fcb svg{transition:none}}
+
+/* ---------- Dropdown menus: staggered item reveal on open, soft slide on item hover ---------- */
+.dd-menu .dd-in{transform-origin:50% 0;transform:scale(.97);transition:transform .4s var(--ease)}
+.dd:hover .dd-menu .dd-in,.dd:focus-within .dd-menu .dd-in{transform:none}
+.dd:hover .dd-in>a,.dd:focus-within .dd-in>a{animation:dd-item .45s var(--ease) both;animation-delay:calc(var(--i,0)*45ms + 60ms)}
+.dd-in>a:nth-child(1){--i:0}.dd-in>a:nth-child(2){--i:1}.dd-in>a:nth-child(3){--i:2}.dd-in>a:nth-child(4){--i:3}.dd-in>a:nth-child(5){--i:4}.dd-in>a:nth-child(6){--i:5}.dd-in>a:nth-child(7){--i:6}.dd-in>a:nth-child(8){--i:7}.dd-in>a:nth-child(9){--i:8}
+@keyframes dd-item{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.nav.seg .dd-in a:not(.dd-all) span:not(.bdg){transition:transform .3s var(--ease)}
+.nav.seg .dd-in a:not(.dd-all):hover span:not(.bdg){transform:translateX(4px)}
+.dd-in a:hover .bdg{transform:scale(1.08)}
+.bdg{transition:background .25s,color .25s,transform .3s var(--ease)}
+@media (prefers-reduced-motion:reduce){.dd:hover .dd-in>a,.dd:focus-within .dd-in>a{animation:none}.dd-menu .dd-in,.nav.seg .dd-in a span{transition:none}}
