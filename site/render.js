@@ -12,7 +12,7 @@ const SRC = path.join(__dirname, '..', 'src', 'page-html');
 // sitemap.xml, robots.txt and JSON-LD all use www. If the primary domain ever changes, change it here too.
 const SITE_URL = (process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jurisassistme.com').replace(/\/$/, '');
 
-const EMAIL = 'contact@jurisassistme.com';
+const EMAIL = 'contact@jurislpo.com';
 const PHONE_DISPLAY = '+1 (646) 233-8454';
 const PHONE_HREF = 'tel:+16462338454';
 // Business hours: change them here only. Used on the contact page, FAQs, meta descriptions and JSON-LD.
