@@ -140,3 +140,8 @@ html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all svg{color:#111}
 html[data-theme="slate-dark"] .fx-panel{background:radial-gradient(90% 70% at 100% 0%,rgba(196,160,106,.2) 0%,transparent 60%),radial-gradient(80% 80% at 0% 100%,rgba(196,160,106,.1) 0%,transparent 60%),linear-gradient(160deg,#1E252D 0%,#161B21 55%,#10141A 100%)}
 html[data-theme="slate-dark"] .tm-x{background:rgba(26,32,39,.94)}
 html[data-theme="slate-dark"] input::placeholder,html[data-theme="slate-dark"] textarea::placeholder{color:#7B8794}
+/* Services mega menu "View all": subtle outlined row instead of a full-width solid brass bar */
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all,html[data-theme="slate-dark"] body.hero-dark .hdr:not(.scrolled) .nav.seg .dd-mega .dd-in .dd-all{background:transparent;color:var(--gold-text);border:1px solid rgba(var(--acc-rgb),.35);border-radius:12px;padding:11px 16px;font-weight:600;transition:background-color .25s,border-color .25s}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:hover,html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:focus-visible{background:rgba(var(--acc-rgb),.12);border-color:var(--gold);color:var(--gold-hi)}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all svg{color:currentColor;transition:transform .3s var(--ease)}
+html[data-theme="slate-dark"] .nav.seg .dd-mega .dd-in .dd-all:hover svg{transform:translateX(3px)}
