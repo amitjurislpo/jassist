@@ -772,7 +772,12 @@ section.first,article.first{padding-top:var(--hero-top)}
 .tm-dtx h3{font-family:var(--display);font-weight:var(--dw3);letter-spacing:var(--dt3);font-size:clamp(28px,3vw,38px);line-height:1.1;margin:10px 0 6px}
 .tm-dtx p{color:#444;font-size:16px;line-height:1.7;margin:0 0 14px}
 .tm-dtx h4{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text);margin:6px 0 4px}
-.tm-dtx .tags-l{margin-bottom:22px}
+.tm-fa{grid-column:1/-1;margin:0;padding:0 34px 28px 22px}
+.tm-fa h4{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text);margin:0 0 8px}
+.tm-fa .tags-l{flex-direction:row;flex-wrap:wrap;gap:6px}
+.tm-fa .btn{margin:22px 0 0 auto;display:flex;width:fit-content}
+.tm-fa .tags-l span{font-size:11.5px;padding:5px 10px;line-height:1.3;border:1px solid transparent;cursor:default;transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s,box-shadow .3s}
+.tm-fa .tags-l span:hover{transform:translateY(-3px);background:var(--gold);color:#111;border-color:var(--gold);box-shadow:0 10px 20px -10px rgba(190,150,80,.7)}
 .tm-dtx .btn{margin-top:auto}
 @media (max-width:1000px){.tm-grid{max-width:600px}.tm-grid>li{width:calc(50% - 10px)}}
 @media (max-width:720px){
@@ -786,12 +791,14 @@ section.first,article.first{padding-top:var(--hero-top)}
   .tm-v{font-size:12px;padding:5px 10px}
   .tm-dc{grid-template-columns:1fr}
   .tm-dph{margin:18px auto 0;width:150px;border-radius:50%}
+  .tm-fa{padding:0 22px 26px}
   .tm-dph img{aspect-ratio:1/1;object-position:top}
   .tm-dtx{padding:26px 22px 26px}
   .tm-dlg{border-radius:22px}
 }
 @media (max-width:520px){.tm-grid{max-width:340px}.tm-grid>li{width:100%}}
 .nf .nf-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+@media (prefers-reduced-motion:reduce){.tm-fa .tags-l span{transition:none}.tm-fa .tags-l span:hover{transform:none}}
 @media (prefers-reduced-motion:reduce){.tm-dlg[open],.tm-dlg[open]::backdrop{animation:none}}
 
 /* ---------- Header: Segmented Capsule ---------- */
