@@ -431,6 +431,8 @@ function teamSection() {
         <span class="tagc" id="tmRole"></span>
         <h3 id="tmName"></h3>
         <p id="tmBio"></p>
+      </div>
+      <div class="tm-fa">
         <h4>Focus areas</h4>
         <div class="tags-l" id="tmFocus"></div>
         <a href="/contact" class="btn btn-dark">Work with our team {{arrow}}</a>
